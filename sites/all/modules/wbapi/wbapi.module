@@ -1,0 +1,372 @@
+<?php
+
+/**
+ * @file
+ *
+ * Main module file for the wbapi module.
+ *
+ * Provides settings page, test page, some devel testing blocks,
+ * some cache implementation. Most important stuff is in wbapi.request.inc.
+ */
+
+// Default country blacklist.
+define('WBAPI_BLACKLIST_COUNTRIES_DEFAULT', '');
+
+/**
+ * Implements hook_menu().
+ */
+function wbapi_menu() {
+  $items = array();
+  $items['admin/config/wbapi'] = array(
+    'title' => 'World Bank API',
+    'page callback' => 'drupal_get_form',
+    'page arguments' => array('wbapi_configuration'),
+    'access callback' => 'user_access',
+    'access arguments' => array('administer site configuration'),
+  );
+  return $items;
+}
+
+/**
+ * Configuration form for the WB API
+ */
+function wbapi_configuration($form, &$form_state) {
+  $form = array();
+  $form['wbapi_url'] = array(
+    '#type' => 'textfield',
+    '#title' => t('API URL'),
+    '#description' => t('The base URL of the API, normally `open.worldbank.org`.'),
+    '#default_value' => variable_get('wbapi_url', 'api.worldbank.org'),
+  );
+  $form['wbapi_current_year'] = array(
+    '#type' => 'textfield',
+    '#title' => t('Default year'),
+    '#description' => t('Year to use as the default, generally be the most recently released WDI.'),
+    '#default_value' => variable_get('wbapi_current_year', '2008'),
+  );
+  $form['wbapi_debug_log'] = array(
+    '#type' => 'checkbox',
+    '#title' => t('Display query log'),
+    '#description' => t('Show queries of current page load at the bottom of the page. Requires devel module and "access devel information" permissions.'),
+    '#default_value' => variable_get('wbapi_debug_log', FALSE),
+  );
+  $form['blacklist'] = array(
+    '#type' => 'fieldset',
+    '#title' => t('Exclusions'),
+    '#tree' => FALSE,
+  );
+  $form['blacklist']['wbapi_blacklist_countries'] = array(
+    '#type' => 'textfield',
+    '#title' => t('Countries'),
+    '#description' => t('Comma separated 2-letter ISO codes of countries that should be excluded from listings. NOTE: Changes to this list come into effect after clearing the cache.'),
+    '#default_value' => variable_get('wbapi_blacklist_countries', WBAPI_BLACKLIST_COUNTRIES_DEFAULT),
+  );
+  $form['cache'] = array(
+    '#type' => 'fieldset',
+    '#title' => t('Cache'),
+    '#tree' => FALSE,
+  );
+  $form['cache']['wbapi_cache_lifetime'] = array(
+    '#type' => 'select',
+    '#title' => t('Cache lifetime'),
+    '#description' => t('How long cached values from the API should be considered valid.'),
+    '#options' => array(
+      '86400' => t('One day'),
+      '172800' => t('Two days'),
+      '604800' => t('One week'),
+      '1209600' => t('Two weeks'),
+      '0' => t('Permanent'),
+    ),
+    '#default_value' => variable_get('wbapi_cache_lifetime', '86400'),
+  );
+  $form['cache']['wbapi_cache_clear'] = array(
+    '#type' => 'submit',
+    '#value' => t('Clear cache'),
+    '#submit' => array('wbapi_cache_clear'),
+  );
+  return system_settings_form($form);
+}
+
+/**
+ * Clear the request cache.
+ */
+function wbapi_cache_clear(&$form, $form_state) {
+  drupal_set_message(t('The WB API cache has been cleared.'));
+  cache_clear_all('*', 'cache_wbapi', TRUE);
+}
+
+/**
+ * Implements hook_cron().
+ *
+ * While we use the normal cache_get and cache_set methods our caching behavior
+ * is a bit different than normal. We don't know how long we want to keep the
+ * cache when it is populated, and want to be able to toggle item lifetimes at
+ * any time. Items adhering to this behavior will be set as CACHE_PERMANENT.
+ *
+ * Note: This will expire cache entries where expire is set to CACHE_PERMANENT
+ *       by design.
+ *
+ * Additionally we allow for all CACHE_TEMPORARY entried to be cleared on every
+ * run.
+ *
+ * TODO: need to support other cache backends.
+ */
+function wbapi_cron() {
+  // Clean temporary entries.
+  // TODO Please review the conversion of this statement to the D7 database API syntax.
+  /* db_query("DELETE FROM {cache_wbapi} WHERE expire = %d", CACHE_TEMPORARY) */
+  db_delete('cache_wbapi')
+  ->condition('expire', CACHE_TEMPORARY)
+  ->execute();
+
+  if ($ttl = variable_get('wbapi_cache_lifetime', '86400')) {
+    $expired = REQUEST_TIME - $ttl;
+    // TODO Please review the conversion of this statement to the D7 database API syntax.
+    /* db_query("DELETE FROM {cache_wbapi} WHERE created < %d AND expire = %d LIMIT 100", $expired, CACHE_PERMANENT) */
+    db_delete('cache_wbapi')
+  ->condition('created', $expired, '<')
+  ->condition('expire', CACHE_PERMANENT)
+  ->execute();
+  }
+}
+
+/**
+ * Implements hook_block().
+ */
+function wbapi_block_OLD($op = 'list', $delta = '') {
+  // TODO Remaining code in this function needs to be moved to the appropriate new hook function.
+  // This is all only useful if we have krumo.
+  if (module_exists('devel')) {
+    switch ($op) {
+      case 'list':
+        return array('debug' => array('info' => 'World Bank API calls'));
+        break;
+      case 'view':
+        if ($delta = 'debug') {
+          // todo get something like the db log happening here.
+          // TODO Please change this theme call to use an associative array for the $variables parameter.
+          return array(
+            'subject' => t('World Bank API calls'),
+            'content' => theme('wbapi_items_placeholder'),
+          );
+        }
+        break;
+    }
+  }
+}
+
+/**
+ * Implements hook_block_info().
+ */
+function wbapi_block_info() {
+  $blocks['debug'] = array(
+    'info' => t('World Bank API calls'),
+    'cache' => DRUPAL_NO_CACHE,
+  );
+  return $blocks;
+}
+
+/**
+ * Implements hook_block_view().
+ */
+function wbapi_block_view($delta = '') {
+  $block = array();
+
+  switch ($delta) {
+    case 'debug':
+      // This is all only useful if we have krumo.
+      if (module_exists('devel') && user_access('access devel information')) {
+        // todo get something like the db log happening here.
+        $block['subject'] = t('World Bank API calls');
+        $block['content'] = theme('wbapi_items_placeholder');
+      }
+      break;
+  }
+  return $block;
+}
+
+/**
+ * Returns a query log to be used as footer at the end of a page.
+ */
+function wbapi_footer() {
+  if (variable_get('wbapi_debug_log', FALSE) && user_access('access devel information')) {
+    $rows =  array();
+    foreach (wbapi_log() as $row) {
+      $rows[] = array($row['count'], $row['time'], $row['url']);
+    }
+
+    if (!empty($rows)) {
+      return theme('table', array('header' => array('Count', 'Time', 'URL'), 'rows' => $rows));
+    }
+  }
+}
+
+/**
+ * Log of all the API hits used in a page load.
+ *
+ * @param $url
+ *   A url that was requested. Optional, if omitted the log will be returned.
+ */
+function wbapi_log($url = '', $time = '') {
+  static $log;
+
+  if (!empty($url)) {
+    if (!isset($log[$url])) {
+      $log[$url] = array(
+        'count' => 1,
+        'url' => $url,
+        'time' => $time,
+      );
+    }
+    else {
+      $log[$url]['count']++;
+    }
+  }
+  else {
+    return empty($log) ? array() : $log;
+  }
+}
+
+/**
+ * Loader for countries. May be used as a menu loader callback.
+ *
+ * @param $country_code
+ *   The iso2 code for the country to be loaded.
+ * @param $lang
+ *   Language code; en, es, fr, ar, etc. Optional, defaults to current
+ *   language.
+ * @return
+ *   A fully populated country object or FALSE if the country could not be
+ *   loaded.
+ */
+function wbapi_countries_load($code, $lang = NULL) {
+  module_load_include('inc', 'wbapi', 'wbapi.request');
+  $ret = wbapiRequest::factory('countries', $lang)
+    ->setFilter('code', $code)
+    ->request();
+  if ($ret && count($ret) === 1) {
+    return array_pop($ret);
+  }
+  return FALSE;
+}
+
+/**
+ * Loader for indicators. May be used as a menu loader callback.
+ *
+ * @param $id
+ *   The indicator id for the indicator to be loaded.
+ * @param $lang
+ *   Language code; en, es, fr, ar, etc. Optional, defaults to current
+ *   language.
+ * @return
+ *   A fully populated indicator object or FALSE if the indicator could not be
+ *   loaded.
+ */
+function wbapi_indicators_load($id, $lang = NULL) {
+  module_load_include('inc', 'wbapi', 'wbapi.request');
+  $ret = wbapiRequest::factory('indicators', $lang)
+    ->setFilter('indicator', $id)
+    ->request();
+  if ($ret && count($ret) === 1) {
+    return array_pop($ret);
+  }
+  return FALSE;
+}
+
+/**
+ * Loader for regions. May be used as a menu loader callback.
+ *
+ * @param $code
+ *   The iso2 code for the region to be loaded.
+ * @param $lang
+ *   Language code; en, es, fr, ar, etc. Optional, defaults to current
+ *   language.
+ * @return
+ *   A fully populated region object or FALSE if the region could not be
+ *   loaded.
+ */
+function wbapi_regions_load($code, $lang = NULL) {
+  module_load_include('inc', 'wbapi', 'wbapi.request');
+  $ret = wbapiRequest::factory('regions', $lang)
+    ->setFilter('code', $code)
+    ->request();
+  if ($ret && count($ret) === 1) {
+    return $ret;
+  }
+  return FALSE;
+}
+
+/**
+ * Loader for admin regions. May be used as a menu loader callback.
+ *
+ * @param $code
+ *   The code for the region to be loaded.
+ * @param $lang
+ *   Language code; en, es, fr, ar, etc. Optional, defaults to current
+ *   language.
+ * @return
+ *   A fully populated region object or FALSE if the region could not be
+ *   loaded.
+ */
+function wbapi_admin_regions_load($code, $lang = NULL) {
+  module_load_include('inc', 'wbapi', 'wbapi.request');
+  $ret = wbapiRequest::factory('adminRegions', $lang)
+    ->setFilter('code', $code)
+    ->request();
+  if ($ret && count($ret) === 1) {
+    return $ret;
+  }
+  return FALSE;
+}
+
+/**
+ * Loader for income levels. May be used as a menu loader callback.
+ *
+ * @param $code
+ *   The ID for the income level to be loaded.
+ * @param $lang
+ *   Language code; en, es, fr, ar, etc. Optional, defaults to current
+ *   language.
+ * @return
+ *   A fully populated income level object or FALSE if the income level could
+ *   not be loaded.
+ */
+function wbapi_income_levels_load($id, $lang = NULL) {
+  module_load_include('inc', 'wbapi', 'wbapi.request');
+  $ret = wbapiRequest::factory('incomeLevels', $lang)
+    ->setFilter('id', $id)
+    ->request();
+  if ($ret && count($ret) === 1) {
+    return $ret;
+  }
+  return FALSE;
+}
+
+/**
+ * Loader for topics. May be used as a menu loader callback.
+ *
+ * @param $id
+ *   The id for the topic to be loaded.
+ * @param $lang
+ *   Language code; en, es, fr, ar, etc. Optional, defaults to current
+ *   language.
+ * @return
+ *   A fully populated topic object or FALSE if the topic could not be
+ *   loaded.
+ */
+function wbapi_topics_load($id, $lang = NULL) {
+  static $topics;
+  if (!isset($topics)) {
+    $topics = array();
+  }
+  if (!isset($topics[$id])) {
+    module_load_include('inc', 'wbapi', 'wbapi.request');
+    $ret = wbapiRequest::factory('topics', $lang)
+      ->setFilter('id', $id)
+      ->request();
+    if ($ret && count($ret) === 1) {
+      $topics[$id] = array_shift($ret);
+    }
+  }
+  return isset($topics[$id]) ? $topics[$id] : FALSE;
+}

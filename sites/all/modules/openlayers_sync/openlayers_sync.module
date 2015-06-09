@@ -1,0 +1,21 @@
+<?php
+/**
+ * @file
+ * openlayers_sync module file.
+ */
+ 
+function openlayers_sync_openlayers_behaviors() {
+  return array(
+    'openlayers_behavior_openlayers_sync' => array(
+      'title' => t('Map Sync'),
+      'description' => t('Synchronizes two or more maps'),
+      'type' => 'behaviors',
+      'behavior' => array(
+	    'path' => drupal_get_path('module', 'openlayers_sync') . '/includes',
+        'file' => 'openlayers_behavior_openlayers_syncs.inc',
+        'class' => 'openlayers_behavior_sync_map',
+        'parent' => 'openlayers_behavior',
+      ),
+    ),
+  );
+}

@@ -1,0 +1,79 @@
+.pa-height{
+height: 400px;
+overflow-y: auto;
+}
+ .block-panels-mini {
+height: 600px;
+overflow-y: auto;
+}
+
+.block-title{
+background: rgb(106, 144, 162);
+padding: 5px;
+padding-left: 15px;
+padding-right: 15px;
+border-radius: 4px;
+}
+
+.block-title > a, .block-title > a:hover, .block-title > a:focus, .block-title > a:visited, .block-title > a:active{
+color: #fff;
+text-decoration: underline;
+}
+
+div#quicktabs-country_tabs {
+margin-top: 20px;
+}
+
+.views-field-field-reported-marine-area, .views-field-field-reported-area, .views-field-text-2, .views-field-text-3, .views-field-text-4, .views-field-text-5, .views-field-text-6, .views-field-nothing, .views-field-nothing-1, .views-field-nothing-2, .views-field-nothing-3, .views-field-nothing-4, .views-field-nothing-5, .views-field-nothing-6, .views-field-nothing-7{
+  text-align: right;
+}
+
+#mini-panel-country_general .panel-separator {
+  background: white;
+  font-size: 1px;
+  height: 0px;
+}
+
+.pane-title {
+font-size: 20px;
+color: #415161;
+font-weight: bold;
+}
+th {
+font-size: 12px;
+color: #415161;
+}
+tr {
+/*text-align: center;*/
+}
+tr.odd {
+background: aliceblue;
+}
+table, th {
+border: 1px solid lightgray;
+padding: 0 5px;
+vertical-align: bottom;
+}
+h5{
+font-size: 14px;
+text-align: left;
+font-weight: bold;
+}
+
+.red {
+  background: rgb(255, 137, 137);
+  border-radius: 4px;
+  padding: 2px;
+}
+
+.yellow {
+  background: yellow;
+  border-radius: 4px;
+  padding: 2px;
+}
+
+.green {
+  background: lightgreen;
+  border-radius: 4px;
+  padding: 2px;
+}

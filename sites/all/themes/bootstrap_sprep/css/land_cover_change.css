@@ -1,0 +1,16 @@
+.lcc-unvalidated{background-color: #DE5B5B !important;}
+.lcc-validated{background-color: #93C851 !important;}
+
+.field.field-name-field-pa-boundary.field-type-geofield.field-label-hidden, #pa-name, #wdpaid, .lcc-hide {
+visibility: hidden;
+height: 0px;
+}
+
+h2 {
+margin-top: 0px !important;
+margin-bottom: 0px !important;
+font-size: 20px !important;
+}
+.btn-info {
+margin-top: 10px;
+}

@@ -1,0 +1,113 @@
+/**
+ * This is the CSS for the Protected Ares pages of the BIOPAMA site
+ * # = ID . = class
+ */
+div#quicktabs-protected_area_tabs {
+margin-top: 20px;
+}
+.pa-hide, .pa-name {
+visibility: hidden;
+height: 0px;
+}
+
+.fires_date_container{
+display: table-row;
+position:relative;
+top:0px;
+}
+.rest-good{
+min-width: 310px; 
+height: 400px; 
+max-width: 800px; 
+float: left; 
+margin: 5px;
+}
+.rest-bad{
+min-width: 310px; 
+max-width: 600px; 
+float: left; 
+margin: 5px;
+height: auto;
+background:#FFFFD0;
+padding:5px;
+border:rgb(164, 173, 39);
+border-width:1px;
+border-style:solid;
+}
+.rest-error{
+min-width: 310px; 
+max-width: 600px; 
+float: left; 
+margin: 5px;
+height: auto;
+background:rgb(253, 230, 233);
+padding:5px;
+border:red;
+border-width:1px;
+border-style:solid;
+}
+
+ 
+ .block-panels-mini {
+height: 600px;
+overflow-y: auto;
+}
+
+.block-title{
+background: rgb(106, 144, 162);
+padding: 5px;
+padding-left: 15px;
+padding-right: 15px;
+border-radius: 4px;
+}
+
+.block-title > a, .block-title > a:hover, .block-title > a:focus, .block-title > a:visited, .block-title > a:active{
+color: #fff;
+text-decoration: underline;
+}
+ 
+.index-disclaimer {
+font-size: x-small;
+padding: 0px;
+}
+ 
+ .pa-name{
+ font-size: xx-large;
+ }
+ 
+ .pane-title {
+font-size: 20px;
+color: #415161;
+font-weight: bold;
+}
+th {
+font-size: 12px;
+color: #415161;
+}
+tr {
+text-align: center;
+}
+tr.odd {
+background: aliceblue;
+}
+table, th {
+border: 1px solid lightgray;
+padding: 0 5px;
+vertical-align: bottom;
+}
+h5{
+font-size: 14px;
+text-align: left;
+font-weight: bold;
+}
+div.olControlMousePosition {
+margin-bottom: 10px;
+background: white;
+padding: 0 4px;
+}
+
+div.openlayers-map-lcc-1990{
+background-image: url(/sites/all/themes/biopama_bootstrap_subtheme/images/loading2.gif);
+background-repeat: no-repeat;
+background-position: center;
+}

@@ -1,0 +1,16 @@
+.region-terms > div > ul > li {
+float: left;
+padding-right: 40px;
+list-style-type: none;
+font-size: small;
+margin-left: -28px;
+}
+
+h2.pane-title {
+font-size: large;
+}
+
+.region-description, .region-countries{
+overflow-y: auto;
+height: 600px;
+}

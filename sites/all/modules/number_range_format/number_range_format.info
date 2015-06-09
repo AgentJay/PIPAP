@@ -1,0 +1,5 @@
+name = Number Range Format
+description = "Add a number range formatter to number fields that allows Admins to determine how links will be displayed"
+package = Fields
+core = 7.x
+files[] = number_range_format.module

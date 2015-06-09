@@ -1,0 +1,13 @@
+name = "WB API Engine"
+description = "Request and Cache handling for the World Bank API."
+package = "World Bank API"
+core = 7.x
+
+files[] = wbapi.request.inc
+
+; Information added by drupal.org packaging script on 2013-10-19
+version = "7.x-1.x-dev"
+core = "7.x"
+project = "wbapi"
+datestamp = "1382165672"
+

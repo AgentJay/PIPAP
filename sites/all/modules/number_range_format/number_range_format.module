@@ -1,0 +1,118 @@
+<?php
+
+/**
+ * @file
+ * adds a formatter for number fields that creates a number range
+ *
+ */
+ 
+ /**
+ * Implements hook_field_formatter_info().
+ */
+function rumberrange_field_formatter_info() {
+  return array(
+    'rumberrange_formatter' => array( //Machine name of the formatter
+      'label' => t('Number Range'),
+      'field types' => array('number_float','number_decimal','number_integer'), //This will only be available to number fields
+      'settings'  => array( //Array of the settings we'll create
+        'number_min' => '0', //give a default value for when the form is first loaded
+        'number_max' => '100', //ditto
+		'tooltip' => 'Describe this range', //ditto
+      ),
+    ),
+  );
+}
+
+/**
+ * Implements hook_field_formatter_settings_form().
+ */
+function rumberrange_field_formatter_settings_form($field, $instance, $view_mode, $form, &$form_state) {
+  //This gets the view_mode where our settings are stored
+  $display = $instance['display'][$view_mode];
+  //This gets the actual settings
+  $settings = $display['settings'];
+  //Initialize the element variable
+  $element = array();
+  //Add your select box
+  $element['number_min'] = array(
+    '#type'           => 'textfield',                        // Use a textbox
+    '#title'          => t('Minimum range'),                      // Widget label
+    '#description'    => t('This will be the lowest value of the slider.'),  // helper text
+    '#default_value'  => $settings['number_min'],               // Get the value if it's already been set
+  );
+  $element['number_max'] = array(
+    '#type'           => 'textfield',                        // Use a textbox
+    '#title'          => t('Maximum value'),                      // Widget label
+    '#description'    => t('This will be the highest value of the slider.'),  // helper text
+    '#default_value'  => $settings['number_max'],               // Get the value if it's already been set
+  );
+  $element['tooltip'] = array(
+    '#type'           => 'textfield',                        // Use a textbox
+    '#title'          => t('Tool Tip'),                      // Widget label
+    '#description'    => t('This text will appear when a user mouses over.'),  // helper text
+    '#default_value'  => $settings['tooltip'],               // Get the value if it's already been set
+  );
+  return $element;
+}
+
+/**
+ * Implements hook_field_formatter_settings_summary().
+ */
+function rumberrange_field_formatter_settings_summary($field, $instance, $view_mode) {
+  $display = $instance['display'][$view_mode];
+  $settings = $display['settings'];
+  $summary = t('Use a range slider with a minimum of @minnum and a maximum of @maxnum with the tooltip of "@tooltip"', array(
+    '@minnum'     => $settings['number_min'],
+    '@maxnum'  => $settings['number_max'],
+	'@tooltip'  => $settings['tooltip'],
+  )); // we use t() for translation and placeholders to guard against attacks
+  return $summary;
+}
+
+/**
+ * Implements hook_field_formatter_view().
+ */
+function rumberrange_field_formatter_view($entity_type, $entity, $field, $instance, $langcode, $items, $display) {
+  $element = array(); // Initialize the var
+  $settings = $display['settings']; // get the settings
+  $minnum = $settings['number_min']; // The minimum number setting selected in the settings form
+  $maxnum = $settings['number_max']; // The maximum number assigned in settings
+  $tooltip = $settings['tooltip']; // The tool tip assigned in settings
+  
+  //insert html here
+  $numrange = '<img src="http://www-eng-x.llnl.gov/bitmaps/test.gif">';
+  
+  foreach ($items as $delta => $item) {
+    $numval = $item['safe_value']; // Getting the actual value
+    $options = array(
+      'html'        => TRUE, // This tells Drupal that we're sending HTML, not plain text, otherwise it would encode it
+      'attributes'  => array(
+        'title' => $tooltip, // This sets our tooltip
+      ),
+    );
+    if(isset($numval)) {
+      $link = l($numrange, $numval, $options); // Create the Link
+      $element[$delta]['#markup'] = $link; // Assign it to the #markup of the element
+    }
+  }
+  return $element;
+}
+
+/*
+<div class="field-type-number-float field-name-field-pa-ppi field-widget-slide-with-style-slider form-wrapper" id="edit-field-pa-ppi">
+	<div id="field-pa-ppi-add-more-wrapper">
+		<div class="form-item form-type-textfield form-item-field-pa-ppi-und-0-value">
+			<label for="edit-field-pa-ppi-und-0-value">Population Pressure Index </label>
+			<input class="edit-slide-with-style-slider form-text" type="text" id="edit-field-pa-ppi-und-0-value" name="field_pa_ppi[und][0][value]" value="28.02" size="8" maxlength="10"> 
+			<span class="field-suffix">  (people per km2 land area in 3 hour buffer area)</span>
+			<div class="description">Population Pressure Indices (PPI)</div>
+		</div>
+		<div class="slide-with-style-slider ui-slider ui-slider-horizontal ui-widget ui-widget-content ui-corner-all" aria-disabled="false">
+			<div class="ui-slider-range ui-widget-header ui-corner-all ui-slider-range-min" style="width: 1.12%;"></div>
+			<a class="ui-slider-handle ui-state-default ui-corner-all" href="#" style="left: 1.12%;">
+				<div class="slider-bubble bubble-edit-field-pa-ppi-und-0-value">28.02</div>
+			</a>
+		</div>
+	</div>
+</div>
+*/

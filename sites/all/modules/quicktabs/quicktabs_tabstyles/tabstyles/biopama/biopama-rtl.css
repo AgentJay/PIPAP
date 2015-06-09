@@ -1,0 +1,9 @@
+
+ul.quicktabs-tabs.quicktabs-style-biopama li {
+  float: right;
+}
+
+ul.quicktabs-tabs.quicktabs-style-biopama li a,
+ul.quicktabs-tabs.quicktabs-style-biopama li a:visited {
+  float: right;
+}

@@ -1,0 +1,111 @@
+/*
+Search Page fix chosen selector height
+*/
+div .chosen-container {
+	height: auto;
+}
+/*
+Search Page add blue border to row results
+*/
+ .rounded {	margin:0px;padding:5px;
+	width:100%;
+	padding: 3px;
+	margin-bottom: 7px;
+	box-shadow: 5px 5px 3px #cccccc;
+	border:2px solid #649ab2;
+	
+	-moz-border-radius-bottomleft:7px;
+	-webkit-border-bottom-left-radius:7px;
+	border-bottom-left-radius:7px;
+	
+	-moz-border-radius-bottomright:7px;
+	-webkit-border-bottom-right-radius:7px;
+	border-bottom-right-radius:7px;
+	
+	-moz-border-radius-topright:7px;
+	-webkit-border-top-right-radius:7px;
+	border-top-right-radius:7px;
+	
+	-moz-border-radius-topleft:7px;
+	-webkit-border-top-left-radius:7px;
+	border-top-left-radius:7px;
+}
+
+/*
+Makes the table in the map overlay pop-up
+*/
+.map-popup {	
+	margin:0px;
+	width:100%;
+	border:2px solid #649ab2;
+	font-size:smaller;
+	padding: 5px;
+	margin-bottom: 20px;
+}
+/*
+Search Page table output for the rows
+*/
+.tg  {border-collapse:collapse;border-spacing:0;border:none;}
+
+/*
+Search Page row everything except the title
+*/
+.tg td{font-family:Arial, sans-serif;font-size:14px;padding:0px;border-style:solid;border-width:0px;overflow:hidden;word-break:normal;vertical-align: top;}
+
+/*
+Control the output of the pop-up box in search maps
+*/
+.map-tg{
+	font-size: x-small;
+	padding-left: 10px;
+	padding-right: 10px;
+	padding-top: 3px;
+}
+
+/*
+Search Page row title 
+*/
+.tg th{font-family:Arial, sans-serif;font-size:14px;font-weight:normal;border-style:solid;border-width:0px;overflow:hidden;word-break:normal;}
+
+/*
+Change filter titles to brown color
+*/
+.search-filters{
+	color: #a25a28;
+}
+
+h4{
+margin-top: 0px !important;
+margin-bottom: 0px !important;
+}
+
+.views-exposed-widget{
+	color: #a25a28;
+}
+.description{
+	color: black;
+	font-size: small;
+}
+
+div.geonet-thumb img {
+width: auto;
+height: 120px;
+}
+.form-type-textfield.form-item-field-pa-hri-value.form-item.form-group, .form-type-textfield.form-item-field-pa-ap-value.form-item.form-group, .form-type-textfield.form-item-field-pa-ppi-value.form-item.form-group, .form-type-textfield.form-item-field-pa-irreplacibility-score-value.form-item.form-group{
+display: none;
+}
+
+.form-type-bef-checkbox {
+width: 20px;
+height: 20px;
+}
+
+.form-control.form-checkboxes.bef-select-as-checkboxes {
+padding: 0px;
+margin-top: -10px;
+border: 0px;
+}
+
+label.option {
+visibility: hidden;
+}

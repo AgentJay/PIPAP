@@ -1,0 +1,179 @@
+/*
+ * Sample CSS for adding new styles to the /style directory of the Superfish library.
+ * 
+ * Instructions:
+ *
+ * 1. Replace the EC-theme (below) with the name of the new style.
+ *    For example, if the style name is drupal, the class will be sf-style-drupal .
+ *
+ * 2. Save the file as CSS with the style name as its name.
+ *    For example, if the style name is drupal the file will be drupal.css and therefore
+ *    libraries/superfish/style/drupal.css.
+ *
+ * 3. That's it! go to the block conifguration, use the new style, make sure everything is right :)
+ *
+ */
+
+.sf-menu.sf-style-EC-theme {
+  float: left;
+  background: #649ab2;
+  width: 100%;
+  padding: 0px;
+  position: absolute;
+    display: -webkit-box;
+    display: -moz-box;
+    display: box;
+}
+.sf-menu.sf-style-EC-theme.sf-navbar {
+  width: 100%;
+}
+.sf-menu.sf-style-EC-theme ul {
+  padding: 0;
+  width: 100%;
+}
+.sf-menu.sf-style-EC-theme a,
+.sf-menu.sf-style-EC-theme span.nolink {
+  padding: 0.5em 1em;
+  color: #fff;
+  font-weight: bold;
+  background: #649ab2;
+}
+.sf-menu.sf-style-EC-theme a.sf-with-ul,
+.sf-menu.sf-style-EC-theme span.nolink.sf-with-ul {
+  padding-right: 2.25em;
+}
+.sf-menu.sf-style-EC-theme.rtl a.sf-with-ul,
+.sf-menu.sf-style-EC-theme.rtl span.nolink.sf-with-ul {
+  padding-left: 2.25em;
+  padding-right: 1em;
+}
+.sf-menu.sf-style-EC-theme span.sf-description {
+  color: #8eaced;
+  display: block;
+  font-size: 0.833em;
+  line-height: 1.5;
+  margin: 5px 0 0 5px;
+  padding: 0;
+}
+.sf-menu.sf-style-EC-theme.rtl span.sf-description {
+  margin: 5px 5px 0 0;
+}
+.sf-menu.sf-style-EC-theme li,
+.sf-menu.sf-style-EC-theme.sf-navbar {
+    -webkit-box-flex: 1;
+    -moz-box-flex: 1;
+    box-flex: 1;
+  text-align: center;
+    -webkit-flex-basis: auto;
+    -moz-flex-basis: auto;
+    flex-basis: auto;
+}
+.sf-menu.sf-style-EC-theme li li {
+  background: #FFF !important;
+  position: relative;
+  text-align: left;
+}
+.sf-menu.sf-style-EC-theme li li li {
+  margin:0px;
+  position: fixed;
+  width: 150px !important;
+  margin-left: -4px;
+}
+.sf-menu.sf-style-EC-theme li:hover,
+.sf-menu.sf-style-EC-theme li.sfHover,
+.sf-menu.sf-style-EC-theme a:focus,
+.sf-menu.sf-style-EC-theme a:hover,
+.sf-menu.sf-style-EC-theme a:active,
+.sf-menu.sf-style-EC-theme span.nolink:hover {
+background: #4f6012;
+color: #fff;
+}
+
+.sf-menu.sf-style-EC-theme li:hover > ul,
+.sf-menu.sf-style-EC-theme li.sfHover > ul {
+
+}
+
+.sf-menu.sf-style-EC-theme .sf-sub-indicator {
+  background-image: url('../images/dropdown-arrows.png');
+}
+div.sf-accordion-toggle.sf-style-EC-theme a,
+div.sf-accordion-toggle.sf-style-EC-theme span.nolink {
+  background: #f0f0f0;
+  color: #8eaced;
+  padding: 1em;
+}
+div.sf-accordion-toggle.sf-style-EC-theme a.sf-expanded,
+.sf-menu.sf-style-EC-theme.sf-accordion li.sf-expanded {
+  background-color: #c0c0c0;
+}
+div.sf-accordion-toggle.sf-style-EC-theme a.sf-expanded,
+.sf-menu.sf-style-EC-theme.sf-accordion li.sf-expanded > a,
+.sf-menu.sf-style-EC-theme.sf-accordion li.sf-expanded > span.nolink {
+  font-weight: bold;
+}
+.sf-menu.sf-style-EC-theme.sf-accordion li a.sf-accordion-button {
+  font-weight: bold;
+  position: absolute;
+  right: 0;
+  top: 0;
+  z-index: 499;
+}
+.sf-menu.sf-style-EC-theme.sf-accordion li li a,
+.sf-menu.sf-style-EC-theme.sf-accordion li li span.nolink {
+  padding-left: 2em;
+}
+.sf-menu.sf-style-EC-theme.sf-accordion li li li a,
+.sf-menu.sf-style-EC-theme.sf-accordion li li li span.nolink {
+  padding-left: 3em;
+}
+.sf-menu.sf-style-EC-theme.sf-accordion li li li li a,
+.sf-menu.sf-style-EC-theme.sf-accordion li li li li span.nolink {
+  padding-left: 4em;
+}
+.sf-menu.sf-style-EC-theme.sf-accordion li li li li li a,
+.sf-menu.sf-style-EC-theme.sf-accordion li li li li li span.nolink {
+  padding-left: 5em;
+}
+.sf-menu.sf-style-EC-theme.rtl.sf-accordion li li a,
+.sf-menu.sf-style-EC-theme.rtl.sf-accordion li li span.nolink {
+  padding-left: auto;
+  padding-right: 2em;
+}
+.sf-menu.sf-style-EC-theme.rtl.sf-accordion li li li a,
+.sf-menu.sf-style-EC-theme.rtl.sf-accordion li li li span.nolink {
+  padding-left: auto;
+  padding-right: 3em;
+}
+.sf-menu.sf-style-EC-theme.rtl.sf-accordion li li li li a,
+.sf-menu.sf-style-EC-theme.rtl.sf-accordion li li li li span.nolink {
+  padding-left: auto;
+  padding-right: 4em;
+}
+.sf-menu.sf-style-EC-theme.rtl.sf-accordion li li li li li a,
+.sf-menu.sf-style-EC-theme.rtl.sf-accordion li li li li li span.nolink {
+  padding-left: auto;
+  padding-right: 5em;
+}
+.sf-menu.sf-style-EC-theme ul.sf-megamenu li.sf-megamenu-wrapper ol,
+.sf-menu.sf-style-EC-theme ul.sf-megamenu li.sf-megamenu-wrapper ol li {
+  margin: 0;
+  padding: 0;
+}
+.sf-menu.sf-style-EC-theme ul.sf-megamenu li.sf-megamenu-wrapper a.menuparent,
+.sf-menu.sf-style-EC-theme ul.sf-megamenu li.sf-megamenu-wrapper span.nolink.menuparent {
+  font-weight: bold;
+}
+.sf-menu.sf-style-EC-theme ul.sf-megamenu li.sf-megamenu-wrapper {
+  background: #c0c0c0;
+}
+.sf-menu.sf-style-EC-theme ul.sf-megamenu li.sf-megamenu-wrapper li {
+  background: transparent;
+}
+.sf-menu.sf-style-EC-theme ul.sf-megamenu li.sf-megamenu-wrapper ol li.sf-megamenu-column {
+  display: inline;
+  float: left;
+}
+.sf-menu.sf-style-EC-theme.rtl ul.sf-megamenu li.sf-megamenu-wrapper ol li.sf-megamenu-column {
+  float: right;
+}

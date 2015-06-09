@@ -1,0 +1,7 @@
+<?php
+/**
+ * @file
+ * Code for the string2id Demo feature.
+ */
+
+include_once 'string2id_demo.features.inc';

@@ -1,0 +1,681 @@
+<?php
+
+include_once('wbquery.features.inc');
+
+/**
+ * Implements hook_theme().
+ */
+function wbquery_theme() {
+  return array(
+    'wbquery_year_pager' => array(
+      'variables' => array('input' => NULL, 'limit' => NULL, 'id' => NULL),
+    ),
+  );
+}
+
+/**
+ * Implements hook_views_plugins().
+ */
+function wbquery_views_plugins() {
+  $plugins = array(
+    'module' => 'wbquery',
+    'query' => array(
+      'wbquery_query' => array(
+        'title' => t('World Bank API Query'),
+        'help' => t('Query will be run using the World Bank API.'),
+        'handler' => 'wbquery_views_plugin_query',
+      ),
+    ),
+    'argument validator' => array(
+      'wbquery_country' => array(
+        'title' => t('World Bank API: Country'),
+        'handler' => 'wbquery_plugin_argument_validate_country',
+      ),
+      'wbquery_income' => array(
+        'title' => t('World Bank API: Income'),
+        'handler' => 'wbquery_plugin_argument_validate_income',
+      ),
+      'wbquery_region' => array(
+        'title' => t('World Bank API: Region'),
+        'handler' => 'wbquery_plugin_argument_validate_region',
+      ),
+      'wbquery_admin_region' => array(
+        'title' => t('World Bank API: Admin region'),
+        'handler' => 'wbquery_plugin_argument_validate_admin_region',
+      ),
+      'wbquery_topic' => array(
+        'title' => t('World Bank API: Topic'),
+        'handler' => 'wbquery_plugin_argument_validate_topic',
+      ),
+      'wbquery_indicator' => array(
+        'title' => t('World Bank API: Indicator'),
+        'handler' => 'wbquery_plugin_argument_validate_indicator',
+      ),
+    ),
+    'argument default' => array(
+      'wbquery_country' => array(
+        'title' => t('World Bank API: Country from URL'),
+        'handler' => 'wbquery_plugin_argument_default_country',
+      ),
+      'wbquery_region' => array(
+        'title' => t('World Bank API: Region from URL'),
+        'handler' => 'wbquery_plugin_argument_default_region',
+      ),
+      'wbquery_admin_region' => array(
+        'title' => t('World Bank API: Admin region from URL'),
+        'handler' => 'wbquery_plugin_argument_default_admin_region',
+      ),
+      'wbquery_topic' => array(
+        'title' => t('World Bank API: Topic from URL'),
+        'handler' => 'wbquery_plugin_argument_default_topic',
+      ),
+      'wbquery_income_level' => array(
+        'title' => t('World Bank API: Income level from URL'),
+        'handler' => 'wbquery_plugin_argument_default_income_level',
+      ),
+      'wbquery_indicator' => array(
+        'title' => t('World Bank API: Indicator from URL'),
+        'handler' => 'wbquery_plugin_argument_default_indicator',
+      ),
+    ),
+    'pager' => array(
+      'wbquery_pager_year' => array(
+        'title' => t('World Bank API: Year pager'),
+        'help' => t('Display indicator values paged by year'),
+        'handler' => 'wbquery_plugin_pager_year',
+        'uses options' => TRUE,
+      ),
+    ),
+  );
+  return $plugins;
+}
+
+/**
+ * Implements hook_views_data().
+ */
+function wbquery_views_data() {
+  // Countries
+  $data['wbapi_countries']['table']['group'] = t('World Bank API');
+  $data['wbapi_countries']['table']['base'] = array(
+    'field' => 'id',
+    'title' => t('World Bank API: Countries'),
+    'help' => t('Countries in the World Bank indicator database'),
+    'query class' => 'wbquery_query',
+  );
+  $data['wbapi_countries']['iso2Code'] = array(
+    'title' => t('iso2 code'),
+    'help' => t('iso 2 digit code'),
+    'field' => array(
+      'handler' => 'wbquery_field_text',
+    ),
+    'argument' => array(
+      'handler' => 'wbquery_argument_text',
+      'wbapi' => array('filter_key' => 'code'),
+    ),
+    'filter' => array(
+      'handler' => 'wbquery_filter_text',
+      'wbapi' => array('filter_key' => 'code'),
+    ),
+  );
+  $data['wbapi_countries']['name'] = array(
+    'title' => t('Name'),
+    'help' => t('Country name'),
+    'field' => array(
+      'handler' => 'wbquery_field_text',
+    ),
+    'sort' => array(
+      'handler' => 'wbquery_sort',
+    ),
+  );
+  $data['wbapi_countries']['region_id'] = array(
+    'title' => t('Region ID'),
+    'help' => t('Region ID'),
+    'field' => array(
+      'handler' => 'wbquery_field_text',
+    ),
+    'argument' => array(
+      'handler' => 'wbquery_argument_text',
+      'wbapi' => array('filter_key' => 'regions'),
+    ),
+    'filter' => array(
+      'handler' => 'wbquery_filter_text',
+      'wbapi' => array('filter_key' => 'regions'),
+    ),
+  );
+  $data['wbapi_countries']['region_value'] = array(
+    'title' => t('Region name'),
+    'help' => t('Region name'),
+    'field' => array(
+      'handler' => 'wbquery_field_text',
+    ),
+  );
+  $data['wbapi_countries']['adminregion_id'] = array(
+    'title' => t('Admin region ID'),
+    'help' => t('Admin region ID'),
+    'field' => array(
+      'handler' => 'wbquery_field_text',
+    ),
+    'argument' => array(
+      'handler' => 'wbquery_argument_text',
+      'wbapi' => array('filter_key' => 'adminRegions'),
+    ),
+    'filter' => array(
+      'handler' => 'wbquery_filter_text',
+      'wbapi' => array('filter_key' => 'adminRegions'),
+    ),
+  );
+  $data['wbapi_countries']['adminregion_value'] = array(
+    'title' => t('Admin region name'),
+    'help' => t('Admin region name'),
+    'field' => array(
+      'handler' => 'wbquery_field_text',
+    ),
+  );
+  $data['wbapi_countries']['capitalCity'] = array(
+    'title' => t('Capital'),
+    'help' => t('Capital city'),
+    'field' => array(
+      'handler' => 'wbquery_field_text',
+    ),
+  );
+  $data['wbapi_countries']['incomeLevel_id'] = array(
+    'title' => t('Income level ID'),
+    'help' => t('Income level ID'),
+    'field' => array(
+      'handler' => 'wbquery_field_text',
+    ),
+    'argument' => array(
+      'handler' => 'wbquery_argument_text',
+      'wbapi' => array('filter_key' => 'incomeLevels'),
+    ),
+  );
+  $data['wbapi_countries']['incomeLevel_value'] = array(
+    'title' => t('Income level'),
+    'help' => t('Income level'),
+    'field' => array(
+      'handler' => 'wbquery_field_text',
+    ),
+  );
+  $data['wbapi_countries']['longitude'] = array(
+    'title' => t('Longitude'),
+    'help' => t('Longitude of the capital city'),
+    'field' => array(
+      'handler' => 'wbquery_field_text',
+    ),
+  );
+  $data['wbapi_countries']['latitude'] = array(
+    'title' => t('Latitude'),
+    'help' => t('Latitude of the capital city'),
+    'field' => array(
+      'handler' => 'wbquery_field_text',
+    ),
+  );
+
+  // Regions
+  $data['wbapi_regions']['table']['group'] = t('World Bank API');
+  $data['wbapi_regions']['table']['base'] = array(
+    'field' => 'id',
+    'title' => t('World Bank API: Regions'),
+    'help' => t('Regions in the World Bank indicator database'),
+    'query class' => 'wbquery_query',
+  );
+  $data['wbapi_regions']['id'] = array(
+    'title' => t('Region id'),
+    'help' => t('Region id'),
+    'field' => array(
+      'handler' => 'wbquery_field_text',
+    ),
+  );
+  $data['wbapi_regions']['iso2Code'] = array(
+    'title' => t('ISO2 code'),
+    'help' => t('Region ISO2 code'),
+    'field' => array(
+      'handler' => 'wbquery_field_text',
+    ),
+  );
+  $data['wbapi_regions']['value'] = array(
+    'title' => t('Region name'),
+    'help' => t('Region name'),
+    'field' => array(
+      'handler' => 'wbquery_field_text',
+    ),
+    'sort' => array(
+      'handler' => 'wbquery_sort',
+    ),
+  );
+
+  // Admin regions
+  $data['wbapi_adminRegions']['table']['group'] = t('World Bank API');
+  $data['wbapi_adminRegions']['table']['base'] = array(
+    'field' => 'id',
+    'title' => t('World Bank API: Admin regions'),
+    'help' => t('Regions in the World Bank indicator database'),
+    'query class' => 'wbquery_query',
+  );
+  $data['wbapi_adminRegions']['id'] = array(
+    'title' => t('Admin region id'),
+    'help' => t('Admin region id'),
+    'field' => array(
+      'handler' => 'wbquery_field_text',
+    ),
+  );
+  $data['wbapi_adminRegions']['iso2Code'] = array(
+    'title' => t('ISO2 code'),
+    'help' => t('Admin region ISO2 code'),
+    'field' => array(
+      'handler' => 'wbquery_field_text',
+    ),
+  );
+  $data['wbapi_adminRegions']['value'] = array(
+    'title' => t('Admin region name'),
+    'help' => t('Admin region name'),
+    'field' => array(
+      'handler' => 'wbquery_field_text',
+    ),
+    'sort' => array(
+      'handler' => 'wbquery_sort',
+    ),
+  );
+
+  // Topics
+  $data['wbapi_topics']['table']['group'] = t('World Bank API');
+  $data['wbapi_topics']['table']['base'] = array(
+    'field' => 'id',
+    'title' => t('World Bank API: Topics'),
+    'help' => t('Topics in the World Bank indicator database'),
+    'query class' => 'wbquery_query',
+  );
+  $data['wbapi_topics']['id'] = array(
+    'title' => t('Topic id'),
+    'help' => t('Topic id'),
+    'field' => array(
+      'handler' => 'wbquery_field_text',
+    ),
+    'argument' => array(
+      'handler' => 'wbquery_argument_text',
+      'wbapi' => array('filter_key' => 'id'),
+    ),
+    'filter' => array(
+      'handler' => 'wbquery_filter_text',
+      'wbapi' => array('filter_key' => 'id'),
+    ),
+  );
+  $data['wbapi_topics']['value'] = array(
+    'title' => t('Topic'),
+    'help' => t('Topic name'),
+    'field' => array(
+      'handler' => 'wbquery_field_text',
+    ),
+    'sort' => array(
+      'handler' => 'wbquery_sort',
+    ),
+  );
+  $data['wbapi_topics']['sourceNote'] = array(
+    'title' => t('Description'),
+    'help' => t('Topic description'),
+    'field' => array(
+      'handler' => 'wbquery_field_text',
+    ),
+  );
+
+  // Income Levels
+  $data['wbapi_incomeLevels']['table']['group'] = t('World Bank API');
+  $data['wbapi_incomeLevels']['table']['base'] = array(
+    'field' => 'id',
+    'title' => t('World Bank API: Income Levels'),
+    'help' => t('Income Levels in the World Bank indicator database'),
+    'query class' => 'wbquery_query',
+  );
+  $data['wbapi_incomeLevels']['id'] = array(
+    'title' => t('Income Level id'),
+    'help' => t('Income Level id'),
+    'field' => array(
+      'handler' => 'wbquery_field_text',
+    ),
+  );
+  $data['wbapi_incomeLevels']['value'] = array(
+    'title' => t('Income Level'),
+    'help' => t('Income Level name'),
+    'field' => array(
+      'handler' => 'wbquery_field_text',
+    ),
+    'sort' => array(
+      'handler' => 'wbquery_sort',
+    ),
+  );
+
+  // Indicators
+  $data['wbapi_indicators']['table']['group'] = t('World Bank API');
+  $data['wbapi_indicators']['table']['base'] = array(
+    'field' => 'id',
+    'title' => t('World Bank API: Indicators'),
+    'help' => t('Indicators in the World Bank indicator database'),
+    'query class' => 'wbquery_query',
+  );
+  $data['wbapi_indicators']['id'] = array(
+    'title' => t('Indicator id'),
+    'help' => t('Indicator id'),
+    'field' => array(
+      'handler' => 'wbquery_field_text',
+    ),
+    'argument' => array(
+      'handler' => 'wbquery_argument_text',
+      'wbapi' => array('filter_key' => 'indicator'),
+    ),
+    'filter' => array(
+      'handler' => 'wbquery_filter_text',
+      'wbapi' => array('filter_key' => 'indicator'),
+    ),
+  );
+  $data['wbapi_indicators']['name'] = array(
+    'title' => t('Indicator name'),
+    'help' => t('Indicator name'),
+    'field' => array(
+      'handler' => 'wbquery_field_text',
+    ),
+    'sort' => array(
+      'handler' => 'wbquery_sort',
+    ),
+  );
+  $data['wbapi_indicators']['source_id'] = array(
+    'title' => t('Source ID'),
+    'help' => t('Source ID'),
+    'field' => array(
+      'handler' => 'wbquery_field_text',
+    ),
+  );
+  $data['wbapi_indicators']['source_value'] = array(
+    'title' => t('Source'),
+    'help' => t('Name of the catalog in which this source appears'),
+    'field' => array(
+      'handler' => 'wbquery_field_text',
+    ),
+  );
+  $data['wbapi_indicators']['sourceOrganization'] = array(
+    'title' => t('Source organization'),
+    'help' => t('The actual source of the indicator.'),
+    'field' => array(
+      'handler' => 'wbquery_field_text',
+    ),
+  );
+  $data['wbapi_indicators']['sourceNote'] = array(
+    'title' => t('Source note'),
+    'help' => t('Source note'),
+    'field' => array(
+      'handler' => 'wbquery_field_text', // should probably be a new handler that wraps in <p>
+    ),
+  );
+  $data['wbapi_indicators']['topic'] = array(
+    'title' => t('Indicator topic'),
+    'help' => t('Indicator topic ID'),
+    'argument' => array(
+      'handler' => 'wbquery_argument_text',
+      'wbapi' => array('filter_key' => 'topic'),
+    ),
+    'filter' => array(
+      'handler' => 'wbquery_filter_text',
+      'wbapi' => array('filter_key' => 'topic'),
+    ),
+  );
+  $data['wbapi_indicators']['featured'] = array(
+    'title' => t('Featured'),
+    'help' => t('Whether an indicator is featured or not.'),
+    'argument' => array(
+      'handler' => 'wbquery_argument_text',
+      'wbapi' => array('filter_key' => 'featured'),
+    ),
+    'filter' => array(
+      'handler' => 'wbquery_filter_boolean',
+      'wbapi' => array('filter_key' => 'featured'),
+    ),
+  );
+
+  // Data
+  $data['wbapi_data']['table']['group'] = t('World Bank API');
+  $data['wbapi_data']['table']['base'] = array(
+    'field' => 'id',
+    'title' => t('World Bank API: Data'),
+    'help' => t('Data in the World Bank indicator database. REQUIRES indicator AND country filters.'),
+    'query class' => 'wbquery_query',
+  );
+  $data['wbapi_data']['country_id'] = array(
+    'title' => t('Country code'),
+    'help' => t('Country or Region code'),
+    'field' => array(
+      'handler' => 'wbquery_field_text',
+    ),
+    'argument' => array(
+      'handler' => 'wbquery_argument_text',
+      'wbapi' => array('filter_key' => 'code'),
+    ),
+    'filter' => array(
+      'handler' => 'wbquery_filter_text',
+      'wbapi' => array('filter_key' => 'code'),
+    ),
+    'relationship' => array(
+      'handler' => 'wbquery_relationship',
+      'base' => 'wbapi_countries',
+      'base field' => 'code',
+      'label' => t('Country code'),
+    ),
+  );
+  $data['wbapi_data']['country_value'] = array(
+    'title' => t('Country name'),
+    'help' => t('Country or Region name'),
+    'field' => array(
+      'handler' => 'wbquery_field_text',
+    ),
+    'sort' => array(
+      'handler' => 'wbquery_sort',
+    ),
+  );
+  $data['wbapi_data']['date'] = array(
+    'title' => t('Date'),
+    'help' => t('Indicator date'),
+    'field' => array(
+      'handler' => 'wbquery_field_text',
+    ),
+    'argument' => array(
+      'handler' => 'wbquery_argument_date',
+      'wbapi' => array('filter_key' => 'year'),
+    ),
+    'filter' => array(
+      'handler' => 'wbquery_filter_date',
+      'wbapi' => array('filter_key' => 'year'),
+    ),
+  );
+  $data['wbapi_data']['indicator_id'] = array(
+    'title' => t('Indicator id'),
+    'help' => t('Indicator id'),
+    'field' => array(
+      'handler' => 'wbquery_field_text',
+    ),
+    'argument' => array(
+      'handler' => 'wbquery_argument_text',
+      'wbapi' => array('filter_key' => 'indicator'),
+    ),
+    'filter' => array(
+      'handler' => 'wbquery_filter_text',
+      'wbapi' => array('filter_key' => 'indicator'),
+    ),
+  );
+  $data['wbapi_data']['indicator_value'] = array(
+    'title' => t('Indicator name'),
+    'help' => t('Indicator name'),
+    'field' => array(
+      'handler' => 'wbquery_field_text',
+    ),
+    'sort' => array(
+      'handler' => 'wbquery_sort',
+    ),
+  );
+  $data['wbapi_data']['value'] = array(
+    'title' => t('Value'),
+    'help' => t('Indicator value'),
+    'field' => array(
+      'handler' => 'wbquery_field_numeric',
+      'additional fields' => array(
+        'indicator_value',
+        'decimal',
+      ),
+      'labelby' => 'indicator_value',
+      'float' => TRUE,
+    ),
+  );
+  $data['wbapi_data']['latest'] = array(
+    'title' => t('Meta: Latest value'),
+    'help' => t('For each item, retrieve the latest value.'),
+    'real field' => 'value',
+    'field' => array(
+      'handler' => 'wbquery_field_latest',
+      'additional fields' => array(
+        'date',
+        'country_value',
+        'indicator_value',
+        'decimal',
+      ),
+      'groupby' => 'country_value', // Custom: Field to collapse & sort series by.
+      'labelby' => 'indicator_value', // Custom: Field to auto-format by.
+      'float' => TRUE,
+      'click sortable' => TRUE,
+    ),
+  );
+  $data['wbapi_data']['meta_series'] = array(
+    'title' => t('Meta: Series'),
+    'help' => t('Represent each series year as a separate field. Do not use with other data display fields.'),
+    'real field' => 'value',
+    'field' => array(
+      'handler' => 'wbquery_field_series',
+      'additional fields' => array(
+        'date',
+        'country_value',
+        'indicator_value',
+        'decimal',
+      ),
+      'groupby' => 'country_value', // Custom: Field to collapse & sort series by.
+      'labelby' => 'indicator_value', // Custom: Field to auto-format by.
+      'float' => TRUE,
+      'click sortable' => TRUE,
+    ),
+  );
+  $data['wbapi_data']['datapoint'] = array(
+    'title' => t('Datapoint'),
+    'help' => t('Datapoint for graphing.'),
+    'real field' => 'value',
+    'field' => array(
+      'handler' => 'wbquery_field_datapoint',
+      'additional fields' => array('date', 'value'),
+      'series_field' => 'date', // Datapoint: field to use for series (x-axis)
+      'value_field' => 'value', // Datapoint: field to use for value (y-axis)
+      'float' => TRUE,
+    ),
+  );
+  $data['wbapi_data']['data_comparison'] = array(
+    'title' => t('Data comparison'),
+    'help' => t('Show the relative value of a data point.'),
+    'real field' => 'value',
+    'field' => array(
+      'handler' => 'wbquery_field_comparison',
+    ),
+  );
+  return $data;
+}
+
+/**
+ * Helper wrapper around setlocale().
+ */
+function wbquery_setlocale($language_code = NULL) {
+  static $original;
+  if (!isset($original)) {
+    $original = setlocale(LC_COLLATE, 0);
+  }
+
+  if (isset($language_code)) {
+    $locale_codes = array(
+      'ar' => array('ar_EG.utf8', 'ar_EG.UTF-8'),
+      'en' => array('en_US.utf8', 'en_US.UTF-8'),
+      'es' => array('es_ES.utf8', 'es_ES.UTF-8'),
+      'fr' => array('fr_FR.utf8', 'fr_FR.UTF-8'),
+    );
+    if (isset($locale_codes[$language_code])) {
+      setlocale(LC_COLLATE, $locale_codes[$language_code]);
+      return TRUE;
+    }
+    return FALSE;
+  }
+  else {
+    setlocale(LC_COLLATE, $original);
+    return TRUE;
+  }
+}
+
+/**
+ * Year pager theme function
+ */
+function theme_wbquery_year_pager($variables) {
+  $input = $variables['input'];
+  $limit = $variables['limit'];
+  $id = $variables['id'];
+  global $pager_total_items;
+
+  $start = variable_get('wbapi_current_year', '2008');
+  $range = $start - $pager_total_items[$id];
+  $steps = ceil($range / $limit);
+
+  $items = array();
+  for ($i = 0; $i < $steps; $i++) {
+    // Generate links...
+    if ($i == 0) {
+      $items[] = array(
+        'class' => array('pager-first'),
+        'data' => _wbquery_generate_pager_link($i, $start, $limit, $id),
+      );
+    }
+    elseif ($i == ($steps - 1)) {
+      $items[] = array(
+        'class' => array('pager-last'),
+        'data' => _wbquery_generate_pager_link($i, $start, $limit, $id),
+      );
+    }
+    else {
+      $items[] = array(
+        'class' => array(),
+        'data' => _wbquery_generate_pager_link($i, $start, $limit, $id),
+      );
+    }
+  }
+  $items = array_reverse($items);
+  return theme('item_list', array('items' => $items, 'title' => NULL, 'type' => 'ul', 'attributes' => array('class' => array('pager'))));
+}
+
+// Helper function to generate pager links.
+function _wbquery_generate_pager_link($step, $start, $range, $id) {
+  global $pager_page_array, $pager_total_items;
+
+  $end = $start - ($step * $range);
+  $start = $end - $range + 1;
+  if ($start < $pager_total_items[$id]) {
+    $start = $pager_total_items[$id];
+  }
+  $text = t('@from-@to', array('@from' => $start, '@to' => $end));
+
+  $page = isset($_GET['page']) ? $_GET['page'] : '';
+  $page_new = pager_load_array($step, $id, $pager_page_array);
+  if ($new_page = implode(',', pager_load_array($page_new[$id], $id, explode(',', $page)))) {
+    $parameters['page'] = $new_page;
+  }
+
+  $query = array();
+  if (!empty($parameters)) {
+    $query = drupal_get_query_parameters($parameters, array());
+  }
+  if ($query_pager = pager_get_query_parameters()) {
+    $query = array_merge($query, $query_pager);
+  }
+
+  $attributes = array();
+  if ($step == $pager_page_array[$id]) {
+    $attributes['class'][] = 'pager-current';
+  }
+  return l($text, $_GET['q'], array('attributes' => $attributes, 'query' => $query));
+}

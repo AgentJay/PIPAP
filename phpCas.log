@@ -1,0 +1,327 @@
+C30F .START phpCAS-1.3.3 ****************** [CAS.php:438]
+C30F .=> phpCAS::client('2.0', 'ecas.cc.cec.eu.int', 7002, '/cas', false, 'LOW') [ecas.inc:636]
+C30F .|    => CAS_Client::__construct('2.0', false, 'ecas.cc.cec.eu.int', 7002, '/cas', false) [CAS.php:340]
+C30F .|    <= ''
+C30F .<= ''
+C30F .=> phpCAS::setNoCasServerValidation() [ecas.inc:637]
+C30F .|    You have configured no validation of the legitimacy of the cas server. This is not recommended for production use. [CAS.php:1553]
+C30F .<= ''
+C30F .=> CAS_Client::getServerLoginURL() [CAS.php:1206]
+C30F .|    => CAS_Client::getURL() [Client.php:342]
+C30F .|    |    Final URI: http://testdelta.jrc.it/ecas [Client.php:3466]
+C30F .|    <= 'http://testdelta.jrc.it/ecas'
+C30F .<= 'https://ecas.cc.cec.eu.int:7002/cas/login?service=http%3A%2F%2Ftestdelta.jrc.it%2Fecas'
+C30F .=> phpCAS::setServerLoginURL('https://ecas.cc.cec.eu.int:7002/cas/login?service=http%3A%2F%2Ftestdelta.jrc.it%2Fecas&domain=eu.europa.ec') [ecas.inc:332]
+C30F .<= ''
+C30F .=> phpCAS::forceAuthentication() [ecas.inc:336]
+C30F .|    => CAS_Client::forceAuthentication() [CAS.php:1015]
+C30F .|    |    => CAS_Client::isAuthenticated() [Client.php:1245]
+C30F .|    |    |    => CAS_Client::_wasPreviouslyAuthenticated() [Client.php:1356]
+C30F .|    |    |    |    no user found [Client.php:1592]
+C30F .|    |    |    <= false
+C30F .|    |    |    no ticket found [Client.php:1453]
+C30F .|    |    <= false
+C30F .|    |    => CAS_Client::redirectToCas(false) [Client.php:1254]
+C30F .|    |    |    => CAS_Client::getServerLoginURL(false, false) [Client.php:1613]
+C30F .|    |    |    <= 'https://ecas.cc.cec.eu.int:7002/cas/login?service=http%3A%2F%2Ftestdelta.jrc.it%2Fecas&domain=eu.europa.ec'
+C30F .|    |    |    Redirect to : https://ecas.cc.cec.eu.int:7002/cas/login?service=http%3A%2F%2Ftestdelta.jrc.it%2Fecas&domain=eu.europa.ec [Client.php:1620]
+C30F .|    |    |    exit()
+C30F .|    |    |    -
+C30F .|    |    -
+C30F .|    -
+ADC8 .START phpCAS-1.3.3 ****************** [CAS.php:438]
+ADC8 .=> phpCAS::client('2.0', 'ecas.cc.cec.eu.int', 7002, '/cas', false, 'LOW') [ecas.inc:636]
+ADC8 .|    => CAS_Client::__construct('2.0', false, 'ecas.cc.cec.eu.int', 7002, '/cas', false) [CAS.php:340]
+ADC8 .|    |    Ticket 'ST-4693948-Pkt1lwxYALhQzzdzs91jiq5KOhP4izjTxlkYx8Evfx9qQMT2K5LoXzikvxOU3CFEfWt9WOzdpCp5U86FzthZISpe-Jj71zxYb8yrJyHhV9JZzg0-RdSpk3i2xPZrEEi8yEPBOFsQSGiRqjfhQxudBH6Q4mm' found [Client.php:988]
+ADC8 .|    <= ''
+ADC8 .<= ''
+ADC8 .=> phpCAS::setNoCasServerValidation() [ecas.inc:637]
+ADC8 .|    You have configured no validation of the legitimacy of the cas server. This is not recommended for production use. [CAS.php:1553]
+ADC8 .<= ''
+ADC8 .=> CAS_Client::getServerLoginURL() [CAS.php:1206]
+ADC8 .|    => CAS_Client::getURL() [Client.php:342]
+ADC8 .|    |    Final URI: http://testdelta.jrc.it/ecas [Client.php:3466]
+ADC8 .|    <= 'http://testdelta.jrc.it/ecas'
+ADC8 .<= 'https://ecas.cc.cec.eu.int:7002/cas/login?service=http%3A%2F%2Ftestdelta.jrc.it%2Fecas'
+ADC8 .=> phpCAS::setServerLoginURL('https://ecas.cc.cec.eu.int:7002/cas/login?service=http%3A%2F%2Ftestdelta.jrc.it%2Fecas&domain=eu.europa.ec') [ecas.inc:332]
+ADC8 .<= ''
+ADC8 .=> phpCAS::forceAuthentication() [ecas.inc:336]
+ADC8 .|    => CAS_Client::forceAuthentication() [CAS.php:1015]
+ADC8 .|    |    => CAS_Client::isAuthenticated() [Client.php:1245]
+ADC8 .|    |    |    => CAS_Client::_wasPreviouslyAuthenticated() [Client.php:1356]
+ADC8 .|    |    |    |    no user found [Client.php:1592]
+ADC8 .|    |    |    <= false
+ADC8 .|    |    |    CAS 2.0 ticket `ST-4693948-Pkt1lwxYALhQzzdzs91jiq5KOhP4izjTxlkYx8Evfx9qQMT2K5LoXzikvxOU3CFEfWt9WOzdpCp5U86FzthZISpe-Jj71zxYb8yrJyHhV9JZzg0-RdSpk3i2xPZrEEi8yEPBOFsQSGiRqjfhQxudBH6Q4mm' is present [Client.php:1406]
+ADC8 .|    |    |    => CAS_Client::validateCAS20('', NULL, NULL) [Client.php:1409]
+ADC8 .|    |    |    |     [Client.php:3101]
+ADC8 .|    |    |    |    => CAS_Client::getServerServiceValidateURL() [Client.php:3108]
+ADC8 .|    |    |    |    |    => CAS_Client::getURL() [Client.php:453]
+ADC8 .|    |    |    |    |    <= 'http://testdelta.jrc.it/ecas'
+ADC8 .|    |    |    |    <= 'https://ecas.cc.cec.eu.int:7002/cas/serviceValidate?service=http%3A%2F%2Ftestdelta.jrc.it%2Fecas'
+ADC8 .|    |    |    |    => CAS_Client::_readURL('https://ecas.cc.cec.eu.int:7002/cas/serviceValidate?service=http%3A%2F%2Ftestdelta.jrc.it%2Fecas&ticket=ST-4693948-Pkt1lwxYALhQzzdzs91jiq5KOhP4izjTxlkYx8Evfx9qQMT2K5LoXzikvxOU3CFEfWt9WOzdpCp5U86FzthZISpe-Jj71zxYb8yrJyHhV9JZzg0-RdSpk3i2xPZrEEi8yEPBOFsQSGiRqjfhQxudBH6Q4mm', NULL, NULL, NULL) [Client.php:3118]
+ADC8 .|    |    |    |    |    => CAS_Request_CurlRequest::sendRequest() [AbstractRequest.php:242]
+ADC8 .|    |    |    |    |    |    Response Body: 
+ADC8 .|    |    |    |    |    |    <?xml version="1.0" encoding="utf-8"?>
+ADC8 .|    |    |    |    |    |    <cas:serviceResponse xmlns:cas="https://ecas.ec.europa.eu/cas/schemas"
+ADC8 .|    |    |    |    |    |                         server="ECAS PRODUCTION_EXODUS version 3.11.1.1.17492 - 07/01/2015 - 10:27"
+ADC8 .|    |    |    |    |    |                         date="2015-03-17T17:40:57.374+01:00" version="3.10">
+ADC8 .|    |    |    |    |    |      <cas:authenticationFailure code='INVALID_USER'>
+ADC8 .|    |    |    |    |    |        Invalid user: &quot;ndavyjme&quot; belongs to &quot;SELF_REGISTERED&quot; users while application accepts only &quot;INTERNAL&quot; users or users with higher assurance levels
+ADC8 .|    |    |    |    |    |      </cas:authenticationFailure>
+ADC8 .|    |    |    |    |    |    </cas:serviceResponse>
+ADC8 .|    |    |    |    |    |    
+ADC8 .|    |    |    |    |    |     [CurlRequest.php:84]
+ADC8 .|    |    |    |    |    <= true
+ADC8 .|    |    |    |    <= true
+ADC8 .|    |    |    |    => CAS_AuthenticationException::__construct(CAS_Client, 'Ticket not validated', 'https://ecas.cc.cec.eu.int:7002/cas/serviceValidate?service=http%3A%2F%2Ftestdelta.jrc.it%2Fecas&ticket=ST-4693948-Pkt1lwxYALhQzzdzs91jiq5KOhP4izjTxlkYx8Evfx9qQMT2K5LoXzikvxOU3CFEfWt9WOzdpCp5U86FzthZISpe-Jj71zxYb8yrJyHhV9JZzg0-RdSpk3i2xPZrEEi8yEPBOFsQSGiRqjfhQxudBH6Q4mm', false, false, '<?xml version="1.0" encoding="utf-8"?><cas:serviceResponse xmlns:cas="https://ecas.ec.europa.eu/cas/schemas"                     server="ECAS PRODUCTION_EXODUS version 3.11.1.1.17492 - 07/01/2015 - 10:27"                     date="2015-03-17T17:40:57.374+01:00" version="3.10">  <cas:authenticationFailure code=\'INVALID_USER\'>    Invalid user: &quot;ndavyjme&quot; belongs to &quot;SELF_REGISTERED&quot; users while application accepts only &quot;INTERNAL&quot; users or users with higher assurance levels  </cas:authenticationFailure></cas:serviceResponse>', 'INVALID_USER', 'Invalid user: "ndavyjme" belongs to "SELF_REGISTERED" users while application accepts only "INTERNAL" users or users with higher assurance levels') [Client.php:3209]
+ADC8 .|    |    |    |    |    => CAS_Client::getURL() [AuthenticationException.php:76]
+ADC8 .|    |    |    |    |    <= 'http://testdelta.jrc.it/ecas'
+ADC8 .|    |    |    |    |    CAS URL: https://ecas.cc.cec.eu.int:7002/cas/serviceValidate?service=http%3A%2F%2Ftestdelta.jrc.it%2Fecas&ticket=ST-4693948-Pkt1lwxYALhQzzdzs91jiq5KOhP4izjTxlkYx8Evfx9qQMT2K5LoXzikvxOU3CFEfWt9WOzdpCp5U86FzthZISpe-Jj71zxYb8yrJyHhV9JZzg0-RdSpk3i2xPZrEEi8yEPBOFsQSGiRqjfhQxudBH6Q4mm [AuthenticationException.php:79]
+ADC8 .|    |    |    |    |    Authentication failure: Ticket not validated [AuthenticationException.php:80]
+ADC8 .|    |    |    |    |    Reason: [INVALID_USER] CAS error: Invalid user: "ndavyjme" belongs to "SELF_REGISTERED" users while application accepts only "INTERNAL" users or users with higher assurance levels [AuthenticationException.php:96]
+ADC8 .|    |    |    |    |    CAS response: <?xml version="1.0" encoding="utf-8"?>
+ADC8 .|    |    |    |    |    <cas:serviceResponse xmlns:cas="https://ecas.ec.europa.eu/cas/schemas"
+ADC8 .|    |    |    |    |                         server="ECAS PRODUCTION_EXODUS version 3.11.1.1.17492 - 07/01/2015 - 10:27"
+ADC8 .|    |    |    |    |                         date="2015-03-17T17:40:57.374+01:00" version="3.10">
+ADC8 .|    |    |    |    |      <cas:authenticationFailure code='INVALID_USER'>
+ADC8 .|    |    |    |    |        Invalid user: &quot;ndavyjme&quot; belongs to &quot;SELF_REGISTERED&quot; users while application accepts only &quot;INTERNAL&quot; users or users with higher assurance levels
+ADC8 .|    |    |    |    |      </cas:authenticationFailure>
+ADC8 .|    |    |    |    |    </cas:serviceResponse>
+ADC8 .|    |    |    |    |     [AuthenticationException.php:101]
+ADC8 .|    |    |    |    |    exit()
+ADC8 .|    |    |    |    |    -
+ADC8 .|    |    |    |    -
+ADC8 .|    |    |    -
+ADC8 .|    |    -
+ADC8 .|    -
+E48F .START phpCAS-1.3.3 ****************** [CAS.php:438]
+E48F .=> phpCAS::client('2.0', 'ecas.cc.cec.eu.int', 7002, '/cas', false, 'LOW') [ecas.inc:636]
+E48F .|    => CAS_Client::__construct('2.0', false, 'ecas.cc.cec.eu.int', 7002, '/cas', false) [CAS.php:340]
+E48F .|    <= ''
+E48F .<= ''
+E48F .=> phpCAS::setNoCasServerValidation() [ecas.inc:637]
+E48F .|    You have configured no validation of the legitimacy of the cas server. This is not recommended for production use. [CAS.php:1553]
+E48F .<= ''
+E48F .=> phpCAS::forceAuthentication() [ecas.inc:336]
+E48F .|    => CAS_Client::forceAuthentication() [CAS.php:1015]
+E48F .|    |    => CAS_Client::isAuthenticated() [Client.php:1245]
+E48F .|    |    |    => CAS_Client::_wasPreviouslyAuthenticated() [Client.php:1356]
+E48F .|    |    |    |    no user found [Client.php:1592]
+E48F .|    |    |    <= false
+E48F .|    |    |    no ticket found [Client.php:1453]
+E48F .|    |    <= false
+E48F .|    |    => CAS_Client::redirectToCas(false) [Client.php:1254]
+E48F .|    |    |    => CAS_Client::getServerLoginURL(false, false) [Client.php:1613]
+E48F .|    |    |    |    => CAS_Client::getURL() [Client.php:342]
+E48F .|    |    |    |    |    Final URI: http://testdelta.jrc.it/ecas [Client.php:3466]
+E48F .|    |    |    |    <= 'http://testdelta.jrc.it/ecas'
+E48F .|    |    |    <= 'https://ecas.cc.cec.eu.int:7002/cas/login?service=http%3A%2F%2Ftestdelta.jrc.it%2Fecas'
+E48F .|    |    |    Redirect to : https://ecas.cc.cec.eu.int:7002/cas/login?service=http%3A%2F%2Ftestdelta.jrc.it%2Fecas [Client.php:1620]
+E48F .|    |    |    exit()
+E48F .|    |    |    -
+E48F .|    |    -
+E48F .|    -
+A168 .START phpCAS-1.3.3 ****************** [CAS.php:438]
+A168 .=> phpCAS::client('2.0', 'ecas.cc.cec.eu.int', 7002, '/cas', false, 'LOW') [ecas.inc:636]
+A168 .|    => CAS_Client::__construct('2.0', false, 'ecas.cc.cec.eu.int', 7002, '/cas', false) [CAS.php:340]
+A168 .|    |    Ticket 'ST-5468222-6haNMDH8ClMRqDtEYZSb8mtQPx42ONfiVDCxf5XbXuIzadEEMu1itUf7q5l2VlgW9tTv67LDgHrzSl8bFwXU9d-Jj71zxYb8yrJyHhV9JZzg0-xtwcKTzQkE9DszKWwscJRxkM88hwUqkps7LdGZ8KEezS' found [Client.php:988]
+A168 .|    <= ''
+A168 .<= ''
+A168 .=> phpCAS::setNoCasServerValidation() [ecas.inc:637]
+A168 .|    You have configured no validation of the legitimacy of the cas server. This is not recommended for production use. [CAS.php:1553]
+A168 .<= ''
+A168 .=> phpCAS::forceAuthentication() [ecas.inc:336]
+A168 .|    => CAS_Client::forceAuthentication() [CAS.php:1015]
+A168 .|    |    => CAS_Client::isAuthenticated() [Client.php:1245]
+A168 .|    |    |    => CAS_Client::_wasPreviouslyAuthenticated() [Client.php:1356]
+A168 .|    |    |    |    no user found [Client.php:1592]
+A168 .|    |    |    <= false
+A168 .|    |    |    CAS 2.0 ticket `ST-5468222-6haNMDH8ClMRqDtEYZSb8mtQPx42ONfiVDCxf5XbXuIzadEEMu1itUf7q5l2VlgW9tTv67LDgHrzSl8bFwXU9d-Jj71zxYb8yrJyHhV9JZzg0-xtwcKTzQkE9DszKWwscJRxkM88hwUqkps7LdGZ8KEezS' is present [Client.php:1406]
+A168 .|    |    |    => CAS_Client::validateCAS20('', NULL, NULL) [Client.php:1409]
+A168 .|    |    |    |     [Client.php:3101]
+A168 .|    |    |    |    => CAS_Client::getServerServiceValidateURL() [Client.php:3108]
+A168 .|    |    |    |    |    => CAS_Client::getURL() [Client.php:453]
+A168 .|    |    |    |    |    |    Final URI: http://testdelta.jrc.it/ecas [Client.php:3466]
+A168 .|    |    |    |    |    <= 'http://testdelta.jrc.it/ecas'
+A168 .|    |    |    |    <= 'https://ecas.cc.cec.eu.int:7002/cas/serviceValidate?service=http%3A%2F%2Ftestdelta.jrc.it%2Fecas'
+A168 .|    |    |    |    => CAS_Client::_readURL('https://ecas.cc.cec.eu.int:7002/cas/serviceValidate?service=http%3A%2F%2Ftestdelta.jrc.it%2Fecas&ticket=ST-5468222-6haNMDH8ClMRqDtEYZSb8mtQPx42ONfiVDCxf5XbXuIzadEEMu1itUf7q5l2VlgW9tTv67LDgHrzSl8bFwXU9d-Jj71zxYb8yrJyHhV9JZzg0-xtwcKTzQkE9DszKWwscJRxkM88hwUqkps7LdGZ8KEezS', NULL, NULL, NULL) [Client.php:3118]
+A168 .|    |    |    |    |    => CAS_Request_CurlRequest::sendRequest() [AbstractRequest.php:242]
+A168 .|    |    |    |    |    |    Response Body: 
+A168 .|    |    |    |    |    |    <?xml version="1.0" encoding="utf-8"?>
+A168 .|    |    |    |    |    |    <cas:serviceResponse xmlns:cas="https://ecas.ec.europa.eu/cas/schemas"
+A168 .|    |    |    |    |    |                         server="ECAS PRODUCTION_EXODUS version 3.11.1.1.17492 - 07/01/2015 - 10:27"
+A168 .|    |    |    |    |    |                         date="2015-03-18T10:05:21.577+01:00" version="3.10">
+A168 .|    |    |    |    |    |      <cas:authenticationFailure code='INVALID_USER'>
+A168 .|    |    |    |    |    |        Invalid user: &quot;ndavyjme&quot; belongs to &quot;SELF_REGISTERED&quot; users while application accepts only &quot;INTERNAL&quot; users or users with higher assurance levels
+A168 .|    |    |    |    |    |      </cas:authenticationFailure>
+A168 .|    |    |    |    |    |    </cas:serviceResponse>
+A168 .|    |    |    |    |    |    
+A168 .|    |    |    |    |    |     [CurlRequest.php:84]
+A168 .|    |    |    |    |    <= true
+A168 .|    |    |    |    <= true
+A168 .|    |    |    |    => CAS_AuthenticationException::__construct(CAS_Client, 'Ticket not validated', 'https://ecas.cc.cec.eu.int:7002/cas/serviceValidate?service=http%3A%2F%2Ftestdelta.jrc.it%2Fecas&ticket=ST-5468222-6haNMDH8ClMRqDtEYZSb8mtQPx42ONfiVDCxf5XbXuIzadEEMu1itUf7q5l2VlgW9tTv67LDgHrzSl8bFwXU9d-Jj71zxYb8yrJyHhV9JZzg0-xtwcKTzQkE9DszKWwscJRxkM88hwUqkps7LdGZ8KEezS', false, false, '<?xml version="1.0" encoding="utf-8"?><cas:serviceResponse xmlns:cas="https://ecas.ec.europa.eu/cas/schemas"                     server="ECAS PRODUCTION_EXODUS version 3.11.1.1.17492 - 07/01/2015 - 10:27"                     date="2015-03-18T10:05:21.577+01:00" version="3.10">  <cas:authenticationFailure code=\'INVALID_USER\'>    Invalid user: &quot;ndavyjme&quot; belongs to &quot;SELF_REGISTERED&quot; users while application accepts only &quot;INTERNAL&quot; users or users with higher assurance levels  </cas:authenticationFailure></cas:serviceResponse>', 'INVALID_USER', 'Invalid user: "ndavyjme" belongs to "SELF_REGISTERED" users while application accepts only "INTERNAL" users or users with higher assurance levels') [Client.php:3209]
+A168 .|    |    |    |    |    => CAS_Client::getURL() [AuthenticationException.php:76]
+A168 .|    |    |    |    |    <= 'http://testdelta.jrc.it/ecas'
+A168 .|    |    |    |    |    CAS URL: https://ecas.cc.cec.eu.int:7002/cas/serviceValidate?service=http%3A%2F%2Ftestdelta.jrc.it%2Fecas&ticket=ST-5468222-6haNMDH8ClMRqDtEYZSb8mtQPx42ONfiVDCxf5XbXuIzadEEMu1itUf7q5l2VlgW9tTv67LDgHrzSl8bFwXU9d-Jj71zxYb8yrJyHhV9JZzg0-xtwcKTzQkE9DszKWwscJRxkM88hwUqkps7LdGZ8KEezS [AuthenticationException.php:79]
+A168 .|    |    |    |    |    Authentication failure: Ticket not validated [AuthenticationException.php:80]
+A168 .|    |    |    |    |    Reason: [INVALID_USER] CAS error: Invalid user: "ndavyjme" belongs to "SELF_REGISTERED" users while application accepts only "INTERNAL" users or users with higher assurance levels [AuthenticationException.php:96]
+A168 .|    |    |    |    |    CAS response: <?xml version="1.0" encoding="utf-8"?>
+A168 .|    |    |    |    |    <cas:serviceResponse xmlns:cas="https://ecas.ec.europa.eu/cas/schemas"
+A168 .|    |    |    |    |                         server="ECAS PRODUCTION_EXODUS version 3.11.1.1.17492 - 07/01/2015 - 10:27"
+A168 .|    |    |    |    |                         date="2015-03-18T10:05:21.577+01:00" version="3.10">
+A168 .|    |    |    |    |      <cas:authenticationFailure code='INVALID_USER'>
+A168 .|    |    |    |    |        Invalid user: &quot;ndavyjme&quot; belongs to &quot;SELF_REGISTERED&quot; users while application accepts only &quot;INTERNAL&quot; users or users with higher assurance levels
+A168 .|    |    |    |    |      </cas:authenticationFailure>
+A168 .|    |    |    |    |    </cas:serviceResponse>
+A168 .|    |    |    |    |     [AuthenticationException.php:101]
+A168 .|    |    |    |    |    exit()
+A168 .|    |    |    |    |    -
+A168 .|    |    |    |    -
+A168 .|    |    |    -
+A168 .|    |    -
+A168 .|    -
+ED04 .START phpCAS-1.3.3 ****************** [CAS.php:438]
+ED04 .=> phpCAS::client('2.0', 'ecas.cc.cec.eu.int', 7002, '/cas', false, 'LOW') [ecas.inc:636]
+ED04 .|    => CAS_Client::__construct('2.0', false, 'ecas.cc.cec.eu.int', 7002, '/cas', false) [CAS.php:340]
+ED04 .|    <= ''
+ED04 .<= ''
+ED04 .=> phpCAS::setNoCasServerValidation() [ecas.inc:637]
+ED04 .|    You have configured no validation of the legitimacy of the cas server. This is not recommended for production use. [CAS.php:1553]
+ED04 .<= ''
+ED04 .=> phpCAS::forceAuthentication() [ecas.inc:336]
+ED04 .|    => CAS_Client::forceAuthentication() [CAS.php:1015]
+ED04 .|    |    => CAS_Client::isAuthenticated() [Client.php:1245]
+ED04 .|    |    |    => CAS_Client::_wasPreviouslyAuthenticated() [Client.php:1356]
+ED04 .|    |    |    |    no user found [Client.php:1592]
+ED04 .|    |    |    <= false
+ED04 .|    |    |    no ticket found [Client.php:1453]
+ED04 .|    |    <= false
+ED04 .|    |    => CAS_Client::redirectToCas(false) [Client.php:1254]
+ED04 .|    |    |    => CAS_Client::getServerLoginURL(false, false) [Client.php:1613]
+ED04 .|    |    |    |    => CAS_Client::getURL() [Client.php:342]
+ED04 .|    |    |    |    |    Final URI: http://testdelta.jrc.it/ecas [Client.php:3466]
+ED04 .|    |    |    |    <= 'http://testdelta.jrc.it/ecas'
+ED04 .|    |    |    <= 'https://ecas.cc.cec.eu.int:7002/cas/login?service=http%3A%2F%2Ftestdelta.jrc.it%2Fecas'
+ED04 .|    |    |    Redirect to : https://ecas.cc.cec.eu.int:7002/cas/login?service=http%3A%2F%2Ftestdelta.jrc.it%2Fecas [Client.php:1620]
+ED04 .|    |    |    exit()
+ED04 .|    |    |    -
+ED04 .|    |    -
+ED04 .|    -
+EA1E .START phpCAS-1.3.3 ****************** [CAS.php:438]
+EA1E .=> phpCAS::client('2.0', 'ecas.cc.cec.eu.int', 7002, '/cas', false, 'LOW') [ecas.inc:636]
+EA1E .|    => CAS_Client::__construct('2.0', false, 'ecas.cc.cec.eu.int', 7002, '/cas', false) [CAS.php:340]
+EA1E .|    |    Ticket 'ST-5485557-drzxGYkgut4kqxFzJ4lQ7N3AQcE0sThHxvAR8wuY3flEvh7NUcKiMfQdsS6C7Bh7s7TWpZe1Cs4yO0W2c5hFok-Jj71zxYb8yrJyHhV9JZzg0-7a1CoxKxqr70h0O2apYKwSIYeVtc1N52AjWE6ilApSm' found [Client.php:988]
+EA1E .|    <= ''
+EA1E .<= ''
+EA1E .=> phpCAS::setNoCasServerValidation() [ecas.inc:637]
+EA1E .|    You have configured no validation of the legitimacy of the cas server. This is not recommended for production use. [CAS.php:1553]
+EA1E .<= ''
+EA1E .=> phpCAS::forceAuthentication() [ecas.inc:336]
+EA1E .|    => CAS_Client::forceAuthentication() [CAS.php:1015]
+EA1E .|    |    => CAS_Client::isAuthenticated() [Client.php:1245]
+EA1E .|    |    |    => CAS_Client::_wasPreviouslyAuthenticated() [Client.php:1356]
+EA1E .|    |    |    |    no user found [Client.php:1592]
+EA1E .|    |    |    <= false
+EA1E .|    |    |    CAS 2.0 ticket `ST-5485557-drzxGYkgut4kqxFzJ4lQ7N3AQcE0sThHxvAR8wuY3flEvh7NUcKiMfQdsS6C7Bh7s7TWpZe1Cs4yO0W2c5hFok-Jj71zxYb8yrJyHhV9JZzg0-7a1CoxKxqr70h0O2apYKwSIYeVtc1N52AjWE6ilApSm' is present [Client.php:1406]
+EA1E .|    |    |    => CAS_Client::validateCAS20('', NULL, NULL) [Client.php:1409]
+EA1E .|    |    |    |     [Client.php:3101]
+EA1E .|    |    |    |    => CAS_Client::getServerServiceValidateURL() [Client.php:3108]
+EA1E .|    |    |    |    |    => CAS_Client::getURL() [Client.php:453]
+EA1E .|    |    |    |    |    |    Final URI: http://testdelta.jrc.it/ecas [Client.php:3466]
+EA1E .|    |    |    |    |    <= 'http://testdelta.jrc.it/ecas'
+EA1E .|    |    |    |    <= 'https://ecas.cc.cec.eu.int:7002/cas/serviceValidate?service=http%3A%2F%2Ftestdelta.jrc.it%2Fecas'
+EA1E .|    |    |    |    => CAS_Client::_readURL('https://ecas.cc.cec.eu.int:7002/cas/serviceValidate?service=http%3A%2F%2Ftestdelta.jrc.it%2Fecas&ticket=ST-5485557-drzxGYkgut4kqxFzJ4lQ7N3AQcE0sThHxvAR8wuY3flEvh7NUcKiMfQdsS6C7Bh7s7TWpZe1Cs4yO0W2c5hFok-Jj71zxYb8yrJyHhV9JZzg0-7a1CoxKxqr70h0O2apYKwSIYeVtc1N52AjWE6ilApSm', NULL, NULL, NULL) [Client.php:3118]
+EA1E .|    |    |    |    |    => CAS_Request_CurlRequest::sendRequest() [AbstractRequest.php:242]
+EA1E .|    |    |    |    |    |    Response Body: 
+EA1E .|    |    |    |    |    |    <?xml version="1.0" encoding="utf-8"?>
+EA1E .|    |    |    |    |    |    <cas:serviceResponse xmlns:cas="https://ecas.ec.europa.eu/cas/schemas"
+EA1E .|    |    |    |    |    |                         server="ECAS PRODUCTION_EXODUS version 3.11.1.1.17492 - 07/01/2015 - 10:27"
+EA1E .|    |    |    |    |    |                         date="2015-03-18T10:15:39.901+01:00" version="3.10">
+EA1E .|    |    |    |    |    |      <cas:authenticationFailure code='INVALID_USER'>
+EA1E .|    |    |    |    |    |        Invalid user: &quot;ndavyjme&quot; belongs to &quot;SELF_REGISTERED&quot; users while application accepts only &quot;INTERNAL&quot; users or users with higher assurance levels
+EA1E .|    |    |    |    |    |      </cas:authenticationFailure>
+EA1E .|    |    |    |    |    |    </cas:serviceResponse>
+EA1E .|    |    |    |    |    |    
+EA1E .|    |    |    |    |    |     [CurlRequest.php:84]
+EA1E .|    |    |    |    |    <= true
+EA1E .|    |    |    |    <= true
+EA1E .|    |    |    |    => CAS_AuthenticationException::__construct(CAS_Client, 'Ticket not validated', 'https://ecas.cc.cec.eu.int:7002/cas/serviceValidate?service=http%3A%2F%2Ftestdelta.jrc.it%2Fecas&ticket=ST-5485557-drzxGYkgut4kqxFzJ4lQ7N3AQcE0sThHxvAR8wuY3flEvh7NUcKiMfQdsS6C7Bh7s7TWpZe1Cs4yO0W2c5hFok-Jj71zxYb8yrJyHhV9JZzg0-7a1CoxKxqr70h0O2apYKwSIYeVtc1N52AjWE6ilApSm', false, false, '<?xml version="1.0" encoding="utf-8"?><cas:serviceResponse xmlns:cas="https://ecas.ec.europa.eu/cas/schemas"                     server="ECAS PRODUCTION_EXODUS version 3.11.1.1.17492 - 07/01/2015 - 10:27"                     date="2015-03-18T10:15:39.901+01:00" version="3.10">  <cas:authenticationFailure code=\'INVALID_USER\'>    Invalid user: &quot;ndavyjme&quot; belongs to &quot;SELF_REGISTERED&quot; users while application accepts only &quot;INTERNAL&quot; users or users with higher assurance levels  </cas:authenticationFailure></cas:serviceResponse>', 'INVALID_USER', 'Invalid user: "ndavyjme" belongs to "SELF_REGISTERED" users while application accepts only "INTERNAL" users or users with higher assurance levels') [Client.php:3209]
+EA1E .|    |    |    |    |    => CAS_Client::getURL() [AuthenticationException.php:76]
+EA1E .|    |    |    |    |    <= 'http://testdelta.jrc.it/ecas'
+EA1E .|    |    |    |    |    CAS URL: https://ecas.cc.cec.eu.int:7002/cas/serviceValidate?service=http%3A%2F%2Ftestdelta.jrc.it%2Fecas&ticket=ST-5485557-drzxGYkgut4kqxFzJ4lQ7N3AQcE0sThHxvAR8wuY3flEvh7NUcKiMfQdsS6C7Bh7s7TWpZe1Cs4yO0W2c5hFok-Jj71zxYb8yrJyHhV9JZzg0-7a1CoxKxqr70h0O2apYKwSIYeVtc1N52AjWE6ilApSm [AuthenticationException.php:79]
+EA1E .|    |    |    |    |    Authentication failure: Ticket not validated [AuthenticationException.php:80]
+EA1E .|    |    |    |    |    Reason: [INVALID_USER] CAS error: Invalid user: "ndavyjme" belongs to "SELF_REGISTERED" users while application accepts only "INTERNAL" users or users with higher assurance levels [AuthenticationException.php:96]
+EA1E .|    |    |    |    |    CAS response: <?xml version="1.0" encoding="utf-8"?>
+EA1E .|    |    |    |    |    <cas:serviceResponse xmlns:cas="https://ecas.ec.europa.eu/cas/schemas"
+EA1E .|    |    |    |    |                         server="ECAS PRODUCTION_EXODUS version 3.11.1.1.17492 - 07/01/2015 - 10:27"
+EA1E .|    |    |    |    |                         date="2015-03-18T10:15:39.901+01:00" version="3.10">
+EA1E .|    |    |    |    |      <cas:authenticationFailure code='INVALID_USER'>
+EA1E .|    |    |    |    |        Invalid user: &quot;ndavyjme&quot; belongs to &quot;SELF_REGISTERED&quot; users while application accepts only &quot;INTERNAL&quot; users or users with higher assurance levels
+EA1E .|    |    |    |    |      </cas:authenticationFailure>
+EA1E .|    |    |    |    |    </cas:serviceResponse>
+EA1E .|    |    |    |    |     [AuthenticationException.php:101]
+EA1E .|    |    |    |    |    exit()
+EA1E .|    |    |    |    |    -
+EA1E .|    |    |    |    -
+EA1E .|    |    |    -
+EA1E .|    |    -
+EA1E .|    -
+15BD .START phpCAS-1.3.3 ****************** [CAS.php:438]
+15BD .=> phpCAS::client('2.0', 'ecas.cc.cec.eu.int', 7002, '/cas', false, 'LOW') [ecas.inc:636]
+15BD .|    => CAS_Client::__construct('2.0', false, 'ecas.cc.cec.eu.int', 7002, '/cas', false) [CAS.php:340]
+15BD .|    |    Ticket 'ST-5485736-JRd3enkq3AVIu1jwF76fb1SeBWuiOJx4ovf6JqzqLt3D5glJXE6ZaOV76hICMkzRQhxMs9cngPjHyLU1zazaGMa-Jj71zxYb8yrJyHhV9JZzg0-UNJK42Danc6MdAk78pzWhzijLjm28FmLiN6j7qVzXCzv' found [Client.php:988]
+15BD .|    <= ''
+15BD .<= ''
+15BD .=> phpCAS::setNoCasServerValidation() [ecas.inc:637]
+15BD .|    You have configured no validation of the legitimacy of the cas server. This is not recommended for production use. [CAS.php:1553]
+15BD .<= ''
+15BD .=> phpCAS::forceAuthentication() [ecas.inc:336]
+15BD .|    => CAS_Client::forceAuthentication() [CAS.php:1015]
+15BD .|    |    => CAS_Client::isAuthenticated() [Client.php:1245]
+15BD .|    |    |    => CAS_Client::_wasPreviouslyAuthenticated() [Client.php:1356]
+15BD .|    |    |    |    no user found [Client.php:1592]
+15BD .|    |    |    <= false
+15BD .|    |    |    CAS 2.0 ticket `ST-5485736-JRd3enkq3AVIu1jwF76fb1SeBWuiOJx4ovf6JqzqLt3D5glJXE6ZaOV76hICMkzRQhxMs9cngPjHyLU1zazaGMa-Jj71zxYb8yrJyHhV9JZzg0-UNJK42Danc6MdAk78pzWhzijLjm28FmLiN6j7qVzXCzv' is present [Client.php:1406]
+15BD .|    |    |    => CAS_Client::validateCAS20('', NULL, NULL) [Client.php:1409]
+15BD .|    |    |    |     [Client.php:3101]
+15BD .|    |    |    |    => CAS_Client::getServerServiceValidateURL() [Client.php:3108]
+15BD .|    |    |    |    |    => CAS_Client::getURL() [Client.php:453]
+15BD .|    |    |    |    |    |    Final URI: http://testdelta.jrc.it/ecas [Client.php:3466]
+15BD .|    |    |    |    |    <= 'http://testdelta.jrc.it/ecas'
+15BD .|    |    |    |    <= 'https://ecas.cc.cec.eu.int:7002/cas/serviceValidate?service=http%3A%2F%2Ftestdelta.jrc.it%2Fecas'
+15BD .|    |    |    |    => CAS_Client::_readURL('https://ecas.cc.cec.eu.int:7002/cas/serviceValidate?service=http%3A%2F%2Ftestdelta.jrc.it%2Fecas&ticket=ST-5485736-JRd3enkq3AVIu1jwF76fb1SeBWuiOJx4ovf6JqzqLt3D5glJXE6ZaOV76hICMkzRQhxMs9cngPjHyLU1zazaGMa-Jj71zxYb8yrJyHhV9JZzg0-UNJK42Danc6MdAk78pzWhzijLjm28FmLiN6j7qVzXCzv', NULL, NULL, NULL) [Client.php:3118]
+15BD .|    |    |    |    |    => CAS_Request_CurlRequest::sendRequest() [AbstractRequest.php:242]
+15BD .|    |    |    |    |    |    Response Body: 
+15BD .|    |    |    |    |    |    <?xml version="1.0" encoding="utf-8"?>
+15BD .|    |    |    |    |    |    <cas:serviceResponse xmlns:cas="https://ecas.ec.europa.eu/cas/schemas"
+15BD .|    |    |    |    |    |                         server="ECAS PRODUCTION_EXODUS version 3.11.1.1.17492 - 07/01/2015 - 10:27"
+15BD .|    |    |    |    |    |                         date="2015-03-18T10:15:44.787+01:00" version="3.10">
+15BD .|    |    |    |    |    |      <cas:authenticationFailure code='INVALID_USER'>
+15BD .|    |    |    |    |    |        Invalid user: &quot;ndavyjme&quot; belongs to &quot;SELF_REGISTERED&quot; users while application accepts only &quot;INTERNAL&quot; users or users with higher assurance levels
+15BD .|    |    |    |    |    |      </cas:authenticationFailure>
+15BD .|    |    |    |    |    |    </cas:serviceResponse>
+15BD .|    |    |    |    |    |    
+15BD .|    |    |    |    |    |     [CurlRequest.php:84]
+15BD .|    |    |    |    |    <= true
+15BD .|    |    |    |    <= true
+15BD .|    |    |    |    => CAS_AuthenticationException::__construct(CAS_Client, 'Ticket not validated', 'https://ecas.cc.cec.eu.int:7002/cas/serviceValidate?service=http%3A%2F%2Ftestdelta.jrc.it%2Fecas&ticket=ST-5485736-JRd3enkq3AVIu1jwF76fb1SeBWuiOJx4ovf6JqzqLt3D5glJXE6ZaOV76hICMkzRQhxMs9cngPjHyLU1zazaGMa-Jj71zxYb8yrJyHhV9JZzg0-UNJK42Danc6MdAk78pzWhzijLjm28FmLiN6j7qVzXCzv', false, false, '<?xml version="1.0" encoding="utf-8"?><cas:serviceResponse xmlns:cas="https://ecas.ec.europa.eu/cas/schemas"                     server="ECAS PRODUCTION_EXODUS version 3.11.1.1.17492 - 07/01/2015 - 10:27"                     date="2015-03-18T10:15:44.787+01:00" version="3.10">  <cas:authenticationFailure code=\'INVALID_USER\'>    Invalid user: &quot;ndavyjme&quot; belongs to &quot;SELF_REGISTERED&quot; users while application accepts only &quot;INTERNAL&quot; users or users with higher assurance levels  </cas:authenticationFailure></cas:serviceResponse>', 'INVALID_USER', 'Invalid user: "ndavyjme" belongs to "SELF_REGISTERED" users while application accepts only "INTERNAL" users or users with higher assurance levels') [Client.php:3209]
+15BD .|    |    |    |    |    => CAS_Client::getURL() [AuthenticationException.php:76]
+15BD .|    |    |    |    |    <= 'http://testdelta.jrc.it/ecas'
+15BD .|    |    |    |    |    CAS URL: https://ecas.cc.cec.eu.int:7002/cas/serviceValidate?service=http%3A%2F%2Ftestdelta.jrc.it%2Fecas&ticket=ST-5485736-JRd3enkq3AVIu1jwF76fb1SeBWuiOJx4ovf6JqzqLt3D5glJXE6ZaOV76hICMkzRQhxMs9cngPjHyLU1zazaGMa-Jj71zxYb8yrJyHhV9JZzg0-UNJK42Danc6MdAk78pzWhzijLjm28FmLiN6j7qVzXCzv [AuthenticationException.php:79]
+15BD .|    |    |    |    |    Authentication failure: Ticket not validated [AuthenticationException.php:80]
+15BD .|    |    |    |    |    Reason: [INVALID_USER] CAS error: Invalid user: "ndavyjme" belongs to "SELF_REGISTERED" users while application accepts only "INTERNAL" users or users with higher assurance levels [AuthenticationException.php:96]
+15BD .|    |    |    |    |    CAS response: <?xml version="1.0" encoding="utf-8"?>
+15BD .|    |    |    |    |    <cas:serviceResponse xmlns:cas="https://ecas.ec.europa.eu/cas/schemas"
+15BD .|    |    |    |    |                         server="ECAS PRODUCTION_EXODUS version 3.11.1.1.17492 - 07/01/2015 - 10:27"
+15BD .|    |    |    |    |                         date="2015-03-18T10:15:44.787+01:00" version="3.10">
+15BD .|    |    |    |    |      <cas:authenticationFailure code='INVALID_USER'>
+15BD .|    |    |    |    |        Invalid user: &quot;ndavyjme&quot; belongs to &quot;SELF_REGISTERED&quot; users while application accepts only &quot;INTERNAL&quot; users or users with higher assurance levels
+15BD .|    |    |    |    |      </cas:authenticationFailure>
+15BD .|    |    |    |    |    </cas:serviceResponse>
+15BD .|    |    |    |    |     [AuthenticationException.php:101]
+15BD .|    |    |    |    |    exit()
+15BD .|    |    |    |    |    -
+15BD .|    |    |    |    -
+15BD .|    |    |    -
+15BD .|    |    -
+15BD .|    -

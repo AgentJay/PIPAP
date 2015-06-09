@@ -1,0 +1,79 @@
+/**
+ * This is the CSS for the homepage of the BIOPAMA site
+ * # = ID . = class
+ */
+ 
+/**
+ * This is for the News feed header
+ */ 
+ .pane-plain-box-homepage-news-feed .pane-title {
+border-bottom-width: 1px;
+border-left-width: 0px;
+border-style: solid;
+border-color: #ccc0a8;
+border-right-width: 0px;
+border-top-width: 1px;
+padding-left: 10px;
+padding-right: 10px;
+margin-bottom: 0px;
+padding-bottom: 0px;
+}
+
+.region-select{
+padding-right: 10px;
+}
+
+/**
+ * This is for the homepage footer (Partners and donors) to have the blue borders
+ */ 
+#mini-panel-homepage_footer{
+border-bottom: 2px solid #7085E0;
+border-top: 2px solid #7085E0;
+}
+
+/**
+ * This is for the News feed read more links to be in the correct position and color
+ */ 
+ .equal-height { 
+position: relative;
+}
+ 
+.read-more a { 
+position: absolute;
+left: 0px;
+bottom: 0px;
+color: #f26649 !important;
+font-weight: bold;
+float: right;
+padding-left: 10px;
+}
+
+/**
+ * This is to fix the width of the panel to reduce white space and correct the panels fluid width bug
+ */ 
+.panels-flexible-homepage_layout-inside {
+width: 101% !important;
+}
+
+/**
+ * Lower the zoom and layer controls on the home page map to accommodate the menu
+ */ 
+.olControlLayerSwitcher {
+top: 60px !important;
+}
+.olControlPanZoomBar {
+top: 60px !important;
+}
+
+/**
+ * Superfish menu center and align with map
+ */ 
+ .region-header{
+    position: relative;
+    width: 100%;
+ }
+ .block-superfish{
+    position: absolute;
+    width: inherit;
+    padding-top: 100px;
+ }

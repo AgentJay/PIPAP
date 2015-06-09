@@ -1,0 +1,169 @@
+/*
+ * Sample CSS for adding new styles to the /style directory of the Superfish library.
+ * 
+ * Instructions:
+ *
+ * 1. Replace the Biopama (below) with the name of the new style.
+ *    For example, if the style name is drupal, the class will be sf-style-drupal .
+ *
+ * 2. Save the file as CSS with the style name as its name.
+ *    For example, if the style name is drupal the file will be drupal.css and therefore
+ *    libraries/superfish/style/drupal.css.
+ *
+ * 3. That's it! go to the block conifguration, use the new style, make sure everything is right :)
+ *
+ */
+
+.sf-menu.sf-style-Biopama {
+  float: left;
+  padding-top: 25px;
+  padding-left: 10px;
+}
+.sf-menu.sf-style-Biopama.sf-navbar {
+}
+.sf-menu.sf-style-Biopama ul {
+  padding: 0;
+}
+.sf-menu.sf-style-Biopama a,
+.sf-menu.sf-style-Biopama span.nolink {
+  padding: 0.2em .2em;
+  color: #649ab2;
+  font-weight: bold;
+}
+.sf-menu.sf-style-Biopama a.sf-with-ul,
+.sf-menu.sf-style-Biopama span.nolink.sf-with-ul {
+  padding-right: 1.6em;
+}
+.sf-menu.sf-style-Biopama.rtl a.sf-with-ul,
+.sf-menu.sf-style-Biopama.rtl span.nolink.sf-with-ul {
+  padding-left: 2.25em;
+  padding-right: 1em;
+}
+.sf-menu.sf-style-Biopama span.sf-description {
+  color: #649ab2;
+  display: block;
+  font-size: 0.833em;
+  line-height: 1.5;
+  margin: 5px 0 0 5px;
+  padding: 0;
+}
+.sf-menu.sf-style-Biopama.rtl span.sf-description {
+  margin: 5px 5px 0 0;
+}
+.sf-menu.sf-style-Biopama li,
+.sf-menu.sf-style-Biopama.sf-navbar {
+    -webkit-box-flex: 1;
+    -moz-box-flex: 1;
+    box-flex: 1;
+  text-align: center;
+    -webkit-flex-basis: auto;
+    -moz-flex-basis: auto;
+    flex-basis: auto;
+}
+.sf-menu.sf-style-Biopama li li {
+  background: #FFF !important;
+  position: relative;
+  text-align: left;
+}
+.sf-menu.sf-style-Biopama li li li {
+  margin:0px;
+  position: fixed;
+  width: 150px !important;
+  margin-left: -4px;
+}
+.sf-menu.sf-style-Biopama li:hover,
+.sf-menu.sf-style-Biopama li.sfHover,
+.sf-menu.sf-style-Biopama a:focus,
+.sf-menu.sf-style-Biopama a:hover,
+.sf-menu.sf-style-Biopama a:active,
+.sf-menu.sf-style-Biopama span.nolink:hover {
+color: #649ab2;
+}
+
+.sf-menu.sf-style-Biopama li:hover > ul,
+.sf-menu.sf-style-Biopama li.sfHover > ul {
+
+}
+
+.sf-menu.sf-style-Biopama .sf-sub-indicator {
+  background-image: url('../images/dropdown-arrows.png');
+}
+div.sf-accordion-toggle.sf-style-Biopama a {
+  background: #f0f0f0;
+  color: #8eaced;
+  padding: 1em;
+}
+div.sf-accordion-toggle.sf-style-Biopama a.sf-expanded,
+.sf-menu.sf-style-Biopama.sf-accordion li.sf-expanded {
+  background-color: #c0c0c0;
+}
+div.sf-accordion-toggle.sf-style-Biopama a.sf-expanded,
+.sf-menu.sf-style-Biopama.sf-accordion li.sf-expanded > a,
+.sf-menu.sf-style-Biopama.sf-accordion li.sf-expanded > span.nolink {
+  font-weight: bold;
+}
+.sf-menu.sf-style-Biopama.sf-accordion li a.sf-accordion-button {
+  font-weight: bold;
+  position: absolute;
+  right: 0;
+  top: 0;
+  z-index: 499;
+}
+.sf-menu.sf-style-Biopama.sf-accordion li li a,
+.sf-menu.sf-style-Biopama.sf-accordion li li span.nolink {
+  padding-left: 2em;
+}
+.sf-menu.sf-style-Biopama.sf-accordion li li li a,
+.sf-menu.sf-style-Biopama.sf-accordion li li li span.nolink {
+  padding-left: 3em;
+}
+.sf-menu.sf-style-Biopama.sf-accordion li li li li a,
+.sf-menu.sf-style-Biopama.sf-accordion li li li li span.nolink {
+  padding-left: 4em;
+}
+.sf-menu.sf-style-Biopama.sf-accordion li li li li li a,
+.sf-menu.sf-style-Biopama.sf-accordion li li li li li span.nolink {
+  padding-left: 5em;
+}
+.sf-menu.sf-style-Biopama.rtl.sf-accordion li li a,
+.sf-menu.sf-style-Biopama.rtl.sf-accordion li li span.nolink {
+  padding-left: auto;
+  padding-right: 2em;
+}
+.sf-menu.sf-style-Biopama.rtl.sf-accordion li li li a,
+.sf-menu.sf-style-Biopama.rtl.sf-accordion li li li span.nolink {
+  padding-left: auto;
+  padding-right: 3em;
+}
+.sf-menu.sf-style-Biopama.rtl.sf-accordion li li li li a,
+.sf-menu.sf-style-Biopama.rtl.sf-accordion li li li li span.nolink {
+  padding-left: auto;
+  padding-right: 4em;
+}
+.sf-menu.sf-style-Biopama.rtl.sf-accordion li li li li li a,
+.sf-menu.sf-style-Biopama.rtl.sf-accordion li li li li li span.nolink {
+  padding-left: auto;
+  padding-right: 5em;
+}
+.sf-menu.sf-style-Biopama ul.sf-megamenu li.sf-megamenu-wrapper ol,
+.sf-menu.sf-style-Biopama ul.sf-megamenu li.sf-megamenu-wrapper ol li {
+  margin: 0;
+  padding: 0;
+}
+.sf-menu.sf-style-Biopama ul.sf-megamenu li.sf-megamenu-wrapper a.menuparent,
+.sf-menu.sf-style-Biopama ul.sf-megamenu li.sf-megamenu-wrapper span.nolink.menuparent {
+  font-weight: bold;
+}
+.sf-menu.sf-style-Biopama ul.sf-megamenu li.sf-megamenu-wrapper {
+  background: #c0c0c0;
+}
+.sf-menu.sf-style-Biopama ul.sf-megamenu li.sf-megamenu-wrapper li {
+  background: transparent;
+}
+.sf-menu.sf-style-Biopama ul.sf-megamenu li.sf-megamenu-wrapper ol li.sf-megamenu-column {
+  display: inline;
+  float: left;
+}
+.sf-menu.sf-style-Biopama.rtl ul.sf-megamenu li.sf-megamenu-wrapper ol li.sf-megamenu-column {
+  float: right;
+}

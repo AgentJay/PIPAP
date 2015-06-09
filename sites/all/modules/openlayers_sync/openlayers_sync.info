@@ -1,0 +1,8 @@
+name = OpenLayers Sync
+description = OpenLayers behaviour that synchronizes two or more maps. 
+core = 7.x
+package = "Openlayers"
+dependencies[] = openlayers
+
+files[] = openlayers_sync.module
+files[] = includes/openlayers_behavior_openlayers_syncs.inc

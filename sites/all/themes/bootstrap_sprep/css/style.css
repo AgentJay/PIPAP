@@ -1,0 +1,209 @@
+/**
+ * This file should get overwritten if Method 1 is used. If Method 2 is chosen,
+ * remove this comment and start adding your styles to this file.
+ */
+ .tg  {border-collapse:collapse;border-spacing:0;border:none;}
+ 
+.webform-component {
+  padding: 10px;
+}
+/*for the calendar add more button */
+ul.action-links {
+  float: left;
+  padding: 0 15px;
+}
+
+.mpa-webform-wrapper{
+  color: #4C6977;
+}
+
+.mpa-webform-field, .webform-datepicker{
+  max-width: 250px;
+}
+
+div#edit_submitted_general_info_country_select_chosen {
+  width: 200px !important;
+}
+ 
+ section#block-masquerade-masquerade {
+display: inline-table;
+}
+#masquerade-block-1 > div > div.container-inline > div > div{display: table-row;}
+
+ table.team-table > tbody > tr > td{
+vertical-align: top;
+height: 140px;
+}
+table.team-table{
+border-color: lightsteelblue;
+}
+ 
+ .region-content {
+  background-color: #fff!important;
+  padding: 20px;
+  -webkit-box-shadow: 4px 4px 15px 0px rgba(50, 50, 50, 0.5);
+  -moz-box-shadow: 4px 4px 15px 0px rgba(50, 50, 50, 0.5);
+  box-shadow: 4px 4px 15px 0px rgba(50, 50, 50, 0.5);
+}
+ 
+ #views-chart-tools-chart-element_1 > div:nth-child(1) > div > svg > g:nth-child(4) > g:nth-child(2) > g:nth-child(2) > rect {
+fill:#3366cc !important;
+}
+ #views-chart-tools-chart-element_1 > div:nth-child(1) > div > svg > g:nth-child(4) > g:nth-child(2) > g:nth-child(2) > g{
+fill:#316395 !important;
+}
+ .page-home2 .olControlPanZoomBar, .page-home2 .olControlLayerSwitcher{
+  top: 50px !important;
+ }
+
+ section#block-superfish-2 {
+width: auto;
+float: left;
+}
+ 
+ /*For the calendar links in the events page*/
+ .monthview div a, .weekview div a, .dayview div a  {
+color: #646B6F;
+font-size: 12px;
+}
+.view .date-nav-wrapper .date-nav {
+  height: 0px;
+  min-height: 0px;
+  margin-bottom: 0px;
+}
+ /*
+#edit-type-wrapper
+ .views-exposed-form .views-exposed-widget {
+float: none;
+padding: .5em 1em 0 0;
+}*/
+
+div.map-layer-name, div.map-layer-link{
+display: none;
+}
+#biopama-search label{
+color: #a25a28;
+}
+#biopama-search .views-submit-button{
+float: left;
+}
+#biopama-search .radio label{
+color: #428bca!important;
+}
+
+ .arrange-fields-container{
+ background-color: #3E728B !important;
+ color: white;
+ }
+ .container-inline-date .date-padding {
+ padding: 0px;
+}
+#edit-additional-settings-vertical-tabs-draggable-wrapper{
+color: black;
+background-color: #ffffff !important;
+padding-left: 15px;
+padding-right: 15px;
+padding-top: 15px;
+}
+#edit-field-coordenadas-gps-und-0-geom-lat {
+width: auto !important;
+}
+
+ .arrange-fields-container .form-control{
+ width: auto;
+ }
+ 
+ .arrange-fields-container .panel-heading {
+padding: 10px 0px;
+}
+.arrange-fields-container .panel{
+color: black;
+}
+.homepage-padding{
+padding: 0 0 0 0 !important;
+}
+.homepage-padding-map{
+padding: 0 0 .5em 0 !important;
+}
+.homepage-padding-left{
+padding: 0 0 0 0 !important;
+}
+.form-horizontal .form-group {
+margin-right: 0px; 
+margin-left: 0px;
+}
+table {
+width: 100%;
+}
+.homepage-padding-middle{
+padding: 0 0 0 0 !important;
+}
+.homepage-padding-right{
+padding: 0 0 0 0 !important;
+}
+.nav-tabs {
+margin-bottom: 0px;
+}
+.nav-tabs>li>a {
+margin-right: 2px;
+line-height: 1.428571429;
+border: 1px solid #ddd;
+border-radius: 4px 4px 0 0;
+background-color: aliceblue;
+}
+
+.radio input[type="radio"], .radio-inline input[type="radio"], .checkbox input[type="checkbox"], .checkbox-inline input[type="checkbox"] {
+float: none;
+margin-left: 0px;
+}
+
+
+.pane-plain-box-test-blue-box .pane-title {
+border-bottom-width: 1px;
+border-bottom-style: solid;
+border-bottom-color: #ccc0a8;
+border-top-width: 1px;
+border-top-style: solid;
+border-top-color: #ccc0a8;
+font-size: large;
+}
+body.front .region-content{
+padding: 0 !important;
+}
+.region-content{
+background-color: #ffffff !important;
+padding: 20px;
+}
+
+.bottom-padding-fix{
+padding: 0 0 0 0 !important;
+}
+.navbar #block-search-form {
+float: right;
+width: 180px;
+margin: 0 0 0 0 !important;
+padding-top: 0.5em;
+}
+.navbar #block-lang-dropdown-language {
+float: right;
+margin-right: 10px;
+padding-top: 0.5em;
+width: 120px;
+}
+
+/*The top bar menu logo positioning*/
+#block-block-6{
+float: left;
+margin-top: 10px;
+}
+
+/*To close the space between the page title and the panel*/
+.page-header {
+margin: 0px;
+border-bottom: 0px;
+}
+
+.breadcrumb {
+margin-bottom: 10px; 
+}
+

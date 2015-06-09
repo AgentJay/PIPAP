@@ -1,0 +1,106 @@
+.flickr-photo-img {
+  vertical-align: text-bottom;
+}
+
+.flickr-photo-box {
+  float: left;
+  width: 260px;
+  height: 260px;
+  padding: 10px;
+  text-align: center;
+}
+
+.flickr-photoset-img {
+  vertical-align: text-bottom;
+}
+
+.flickr-photoset-box {
+  float: left;
+  padding: 10px;
+  text-align: center;
+}
+
+span.flickr-wrap,
+span.flickr-photoset-single {
+  position: relative;
+  display: inline-block;
+  margin: 0 5px 5px 0;
+  vertical-align: top;
+}
+
+span.flickr-credit {
+  display: block;
+  overflow: hidden;
+  padding: 0 0 4px 4px;
+  font-size: 80%;
+  line-height: 100%;
+}
+
+.flickr-slideshow {
+  position: relative;
+  overflow: hidden;
+  width: 100%;
+  height: 0;
+  /*Change percentage below to change ratio. Currently 16:9 (as most screens).*/
+  padding-bottom: 56.25%;
+}
+
+.flickr-slideshow object {
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+.flickr-block-photosets .flickr-block-photoset {
+  margin-top: 0.5em;
+  padding-top: 0.5em;
+  border-top: 1px solid #dfdfdf;
+}
+
+span.floatleft {
+  float: left; /* LTR */
+  margin: 5px 5px 0 0; /* LTR */
+}
+span.floatright {
+  float: right; /* LTR */
+  margin: 5px 0 0 10px; /* LTR */
+}
+
+span.flickr-tags {
+  font-style: italic;
+}
+
+.flickr-wrap,
+.flickr-wrap img,
+.flickr-wrap .flickr-credit {
+  /*See http://stackoverflow.com/a/11390432/523688*/
+  -webkit-box-sizing: border-box;
+     -moz-box-sizing: border-box;
+          box-sizing: border-box;
+  max-width: 100%;
+}
+
+div.flickr-photoset {
+  clear: both;
+}
+
+span.flickr-empty {
+  display: inline-block;
+  margin: 10px;
+}
+
+.page-flickr-sets h1#page-title {
+  display: none;
+}
+
+.tips span.ctools-toggle {
+  float: none !important;
+}
+
+span.grayed-out {
+  color: darkgray;
+}
+
+span.grayed-out-help {
+  color: #666;
+}

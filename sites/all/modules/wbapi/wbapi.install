@@ -1,0 +1,24 @@
+<?php
+/**
+ * @file
+ * Install, update and uninstall functions for the wbapi module.
+ */
+
+/**
+ * Implements hook_uninstall().
+ */
+function wbapi_uninstall() {
+  variable_del('wbapi_url');
+  variable_del('wbapi_current_year');
+  variable_del('wbapi_debug_log');
+  variable_del('wbapi_cache_lifetime');
+}
+
+/**
+ * Implements hook_schema().
+ */
+function wbapi_schema() {
+  $schema = array();
+  $schema['cache_wbapi'] = drupal_get_schema_unprocessed('system', 'cache');
+  return $schema;
+}

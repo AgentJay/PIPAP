@@ -1,0 +1,20 @@
+name = Views Json Query Plugin
+description = Adds a views backend to query Json files.
+package = Views
+dependencies[] = views
+core = 7.x
+
+files[] = views_json_query_plugin_query_json.inc
+; Handlers
+files[] = handlers/views_json_query_handler_field.inc
+files[] = handlers/views_json_query_handler_filter.inc
+files[] = handlers/views_json_query_handler_filter_query_string.inc
+files[] = handlers/views_json_query_handler_sort.inc
+files[] = handlers/views_json_query_handler_argument_query_string.inc
+
+; Information added by  packaging script on 2013-11-09
+version = "7.x-1.0+1-dev"
+core = "7.x"
+project = "views_json_query"
+datestamp = "1384040306"
+

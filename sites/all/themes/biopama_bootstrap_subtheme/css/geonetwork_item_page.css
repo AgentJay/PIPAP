@@ -1,0 +1,54 @@
+/*
+This controls the size of the thumbnail that comes from geonetwork
+*/
+div.geonet-thumb img {
+width: 300px;
+height: auto;
+}
+div.map-layer-map-name, div.map-layer-map-url, div.map-layer-bbox-lower, div.map-layer-bbox-upper{
+display: none;
+}
+
+.thumbnail-shadow{
+-webkit-box-shadow: 1px 1px 15px 0px rgba(0,0,0,0.25);
+-moz-box-shadow: 1px 1px 15px 0px rgba(0,0,0,0.25);
+box-shadow: 1px 1px 15px 0px rgba(0,0,0,0.25);
+ float: right;
+
+}
+
+.geonode-hide {
+visibility: hidden;
+height: 0px;
+}
+
+.height-fix{
+height: 400px;
+}
+
+h2.pane-title.ctools-collapsible-handle {
+  background: rgb(106, 144, 162);
+  padding: 5px;
+  padding-left: 15px;
+  padding-right: 15px;
+  border-radius: 4px;
+  color: #fff;
+  text-decoration: underline;
+}
+
+
+.ctools-collapsible-container .ctools-toggle {
+  float: right;
+  margin: 6px;
+  margin-right: 20px;
+  width: 21px;
+  height: 21px;
+  cursor: pointer;
+  background-position: 7px 7px;
+  background-repeat: no-repeat;
+  background-image: url(images/expanded2.png);
+}
+
+.ctools-collapsible-container .ctools-toggle-collapsed {
+  background-image: url(images/collapsed2.png);
+}

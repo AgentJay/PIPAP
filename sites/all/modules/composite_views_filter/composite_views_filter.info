@@ -1,0 +1,19 @@
+
+name = Composite Views filter
+description = Adds composite conditions to a View's filter section.
+core = 7.x
+package = Views
+
+php = 5.3
+
+dependencies[] = list
+dependencies[] = views
+
+files[] = views/composite_views_filter_handler.inc
+
+; Information added by Drupal.org packaging script on 2014-08-12
+version = "7.x-1.2"
+core = "7.x"
+project = "composite_views_filter"
+datestamp = "1407875928"
+
